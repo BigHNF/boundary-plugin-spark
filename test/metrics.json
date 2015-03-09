@@ -1,0 +1,111 @@
+{
+    "counters": {},
+    "gauges": {
+        "app-20150302013135-0001.driver.BlockManager.disk.diskSpaceUsed_MB": {
+            "value": 0
+        },
+        "app-20150302013135-0001.driver.BlockManager.memory.maxMem_MB": {
+            "value": 534
+        },
+        "app-20150302013135-0001.driver.BlockManager.memory.memUsed_MB": {
+            "value": 0
+        },
+        "app-20150302013135-0001.driver.BlockManager.memory.remainingMem_MB": {
+            "value": 534
+        },
+        "app-20150302013135-0001.driver.DAGScheduler.job.activeJobs": {
+            "value": 0
+        },
+        "app-20150302013135-0001.driver.DAGScheduler.job.allJobs": {
+            "value": 0
+        },
+        "app-20150302013135-0001.driver.DAGScheduler.stage.failedStages": {
+            "value": 0
+        },
+        "app-20150302013135-0001.driver.DAGScheduler.stage.runningStages": {
+            "value": 0
+        },
+        "app-20150302013135-0001.driver.DAGScheduler.stage.waitingStages": {
+            "value": 0
+        },
+        "app-20150302013135-0001.driver.jvm.Copy.count": {
+            "value": 1
+        },
+        "app-20150302013135-0001.driver.jvm.Copy.time": {
+            "value": 92
+        },
+        "app-20150302013135-0001.driver.jvm.MarkSweepCompact.count": {
+            "value": 4
+        },
+        "app-20150302013135-0001.driver.jvm.MarkSweepCompact.time": {
+            "value": 810
+        },
+        "app-20150302013135-0001.driver.jvm.heap.committed": {
+            "value": 518979584
+        },
+        "app-20150302013135-0001.driver.jvm.heap.init": {
+            "value": 536870912
+        },
+        "app-20150302013135-0001.driver.jvm.heap.max": {
+            "value": 518979584
+        },
+        "app-20150302013135-0001.driver.jvm.heap.usage": {
+            "value": 0.22602743463604147
+        },
+        "app-20150302013135-0001.driver.jvm.heap.used": {
+            "value": 117303624
+        },
+        "app-20150302013135-0001.driver.jvm.non-heap.committed": {
+            "value": 60489728
+        },
+        "app-20150302013135-0001.driver.jvm.non-heap.init": {
+            "value": 35815424
+        },
+        "app-20150302013135-0001.driver.jvm.non-heap.max": {
+            "value": 190840832
+        },
+        "app-20150302013135-0001.driver.jvm.non-heap.usage": {
+            "value": 0.267224615746802
+        },
+        "app-20150302013135-0001.driver.jvm.non-heap.used": {
+            "value": 50997368
+        },
+        "app-20150302013135-0001.driver.jvm.pools.Code-Cache.usage": {
+            "value": 0.12292098999023438
+        },
+        "app-20150302013135-0001.driver.jvm.pools.Eden-Space.usage": {
+            "value": 0.30582218379764764
+        },
+        "app-20150302013135-0001.driver.jvm.pools.Perm-Gen-[shared-ro].usage": {
+            "value": 0.5878173828125
+        },
+        "app-20150302013135-0001.driver.jvm.pools.Perm-Gen-[shared-rw].usage": {
+            "value": 0.5904286702473959
+        },
+        "app-20150302013135-0001.driver.jvm.pools.Perm-Gen.usage": {
+            "value": 0.24795383214950562
+        },
+        "app-20150302013135-0001.driver.jvm.pools.Survivor-Space.usage": {
+            "value": 0.0
+        },
+        "app-20150302013135-0001.driver.jvm.pools.Tenured-Gen.usage": {
+            "value": 0.20541845577970524
+        },
+        "app-20150302013135-0001.driver.jvm.total.committed": {
+            "value": 579502080
+        },
+        "app-20150302013135-0001.driver.jvm.total.init": {
+            "value": 572686336
+        },
+        "app-20150302013135-0001.driver.jvm.total.max": {
+            "value": 709820416
+        },
+        "app-20150302013135-0001.driver.jvm.total.used": {
+            "value": 168302336
+        }
+    },
+    "histograms": {},
+    "meters": {},
+    "timers": {},
+    "version": "3.0.0"
+}

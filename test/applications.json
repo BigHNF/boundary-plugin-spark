@@ -1,0 +1,27 @@
+{
+    "counters": {},
+    "gauges": {
+        "application.Spark shell.1425259813789.cores": {
+            "value": 0
+        },
+        "application.Spark shell.1425259813789.runtime_ms": {
+            "value": 26174
+        },
+        "application.Spark shell.1425259813789.status": {
+            "value": "FINISHED"
+        },
+        "application.Spark shell.1425259895860.cores": {
+            "value": 1
+        },
+        "application.Spark shell.1425259895860.runtime_ms": {
+            "value": 8835969
+        },
+        "application.Spark shell.1425259895860.status": {
+            "value": "RUNNING"
+        }
+    },
+    "histograms": {},
+    "meters": {},
+    "timers": {},
+    "version": "3.0.0"
+}

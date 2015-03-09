@@ -1,0 +1,214 @@
+{
+  "result": [
+  {
+    "name": "SPARK_MASTER_WORKERS_COUNT",
+    "displayName": "Master Workers",
+    "description": "The number of active workers on the master.",
+    "unit": "number",
+    "displayNameShort": "Master Workers",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "SPARK_MASTER_APPLICATIONS_RUNNING_COUNT",
+    "displayName": "Master Apps Running",
+    "description": "Running application count on the master.",
+    "unit": "number",
+    "displayNameShort": "Master Apps Running",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "SPARK_MASTER_APPLICATIONS_WAITING_COUNT",
+    "displayName": "Master Apps Waiting",
+    "description": "Waiting application count on the master.",
+    "unit": "number",
+    "displayNameShort": "Master Apps Waiting",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "SPARK_MASTER_JVM_MEMORY_USED",
+    "displayName": "Master JVM Mem Used",
+    "description": "Memory used by the JVM on the master.",
+    "unit": "bytecount",
+    "displayNameShort": "Master Mem Used",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "SPARK_MASTER_JVM_MEMORY_COMMITTED",
+    "displayName": "Master JVM Mem Committed",
+    "description": "Memory committed by the JVM on the master.",
+    "unit": "bytecount",
+    "displayNameShort": "Master Mem Committed",
+    "defaultAggregate": "avg"
+  },  
+  {
+    "name": "SPARK_MASTER_JVM_HEAP_MEMORY_USED",
+    "displayName": "Master JVM Heap Mem Used",
+    "description": "Heap memory used by the JVM on the master.",
+    "unit": "bytecount",
+    "displayNameShort": "Master Heap Mem Used",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "SPARK_MASTER_JVM_HEAP_MEMORY_USAGE",
+    "displayName": "Master JVM Heap Mem Usage",
+    "description": "Percentage of heap memory used by the JVM on the master.",
+    "unit": "percentage",
+    "displayNameShort": "Master Heap Mem Usage",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "SPARK_MASTER_JVM_NONHEAP_MEMORY_COMMITTED",
+    "displayName": "Master JVM Non-heap Mem Committed",
+    "description": "Non-heap memory committed by the JVM on the master.",
+    "unit": "bytecount",
+    "displayNameShort": "Master Non-heap Mem Committed",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "SPARK_MASTER_JVM_NONHEAP_MEMORY_USED",
+    "displayName": "Master JVM Non-heap Mem Used",
+    "description": "Non-heap memory used by the JVM on the master.",
+    "unit": "bytecount",
+    "displayNameShort": "Master Non-heap Mem Used",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "SPARK_MASTER_JVM_NONHEAP_MEMORY_USAGE",
+    "displayName": "Master JVM Non-heap Mem Usage",
+    "description": "Percentage of non-heap memory usage by the JVM on the master.",
+    "unit": "percentage",
+    "displayNameShort": "Master Non-heap Mem Usage",
+    "defaultAggregate": "avg"
+  },
+
+  {
+    "name": "SPARK_APP_JOBS_ACTIVE",
+    "displayName": "App Active Jobs",
+    "description": "Jobs running on the application",
+    "unit": "number",
+    "displayNameShort": "App Active Jobs",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "SPARK_APP_JOBS_ALL",
+    "displayName": "App Total Jobs",
+    "description": "All jobs created by the application.",
+    "unit": "number",
+    "displayNameShort": "App Total Jobs",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "SPARK_APP_STAGES_FAILED",
+    "displayName": "App Failed Stages",
+    "description": "Failed stages for the application.",
+    "unit": "number",
+    "displayNameShort": "App Failed Stages",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "SPARK_APP_STAGES_RUNNING",
+    "displayName": "App Stages Running",
+    "description": "Running stages for the application.",
+    "unit": "number",
+    "displayNameShort": "App Stages Running",
+    "defaultAggregate": "avg"
+  },  
+  {
+    "name": "SPARK_APP_STAGES_WAITING",
+    "displayName": "App Stages Waiting",
+    "description": "Waiting stages for the application.",
+    "unit": "number",
+    "displayNameShort": "App Stages Waiting",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "SPARK_APP_BLKMGR_DISK_SPACE_USED",
+    "displayName": "App Disk Used",
+    "description": "Block manager disk space used",
+    "unit": "bytecount",
+    "displayNameShort": "App Disk Used",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "SPARK_APP_BLKMGR_MEMORY_USED",
+    "displayName": "App Memory Used",
+    "description": "Block manager memory used",
+    "unit": "bytecount",
+    "displayNameShort": "App Memory Used",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "SPARK_APP_BLKMGR_MEMORY_FREE",
+    "displayName": "App Remaining Memory",
+    "description": "Block manager remaining memory",
+    "unit": "bytecount",
+    "displayNameShort": "App Remaining Memory",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "SPARK_APP_JVM_MEMORY_COMMITTED",
+    "displayName": "App JVM Mem Committed",
+    "description": "Memory committed by the JVM of the app",
+    "unit": "bytecount",
+    "displayNameShort": "App JVM Mem Committed",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "SPARK_APP_JVM_MEMORY_USED",
+    "displayName": "App JVM Mem Used",
+    "description": "Memory used by the JVM of the app",
+    "unit": "bytecount",
+    "displayNameShort": "App JVM Mem Used",
+    "defaultAggregate": "avg"
+  },    
+  {
+    "name": "SPARK_APP_JVM_HEAP_MEMORY_COMMITTED",
+    "displayName": "App JVM Heap Committed",
+    "description": "Heap memory committed by the JVM of the app",
+    "unit": "bytecount",
+    "displayNameShort": "App JVM Heap Committed",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "SPARK_APP_JVM_HEAP_MEMORY_USED",
+    "displayName": "App JVM Heap Used",
+    "description": "Heap memory used by the JVM of the app",
+    "unit": "bytecount",
+    "displayNameShort": "App JVM Heap Used",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "SPARK_APP_JVM_HEAP_MEMORY_USAGE",
+    "displayName": "App JVM Heap Usage",
+    "description": "Percentage of heap memory in use by the JVM of the app",
+    "unit": "percentage",
+    "displayNameShort": "App JVM Heap Usage",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "SPARK_APP_JVM_NOHEAP_MEMORY_COMMITTED",
+    "displayName": "App Non-heap Committed",
+    "description": "Non-heap memory committed by the JVM of the app",
+    "unit": "bytecount",
+    "displayNameShort": "App Non-heap Committed",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "SPARK_APP_JVM_NONHEAP_MEMORY_USED",
+    "displayName": "App Non-heap Used",
+    "description": "Non-heap memory used by the JVM of the app",
+    "unit": "bytecount",
+    "displayNameShort": "App Non-heap Used",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "SPARK_APP_JVM_NONHEAP_MEMORY_USAGE",
+    "displayName": "App Non-heap Usage",
+    "description": "Percentage of non-heap memory in use by the JVM of the app",
+    "unit": "bytecount",
+    "displayNameShort": "App Non-heap Usage",
+    "defaultAggregate": "avg"
+  }
+
+  ]
+}

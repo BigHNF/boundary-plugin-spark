@@ -1,0 +1,93 @@
+{
+    "counters": {},
+    "gauges": {
+        "jvm.Copy.count": {
+            "value": 9
+        },
+        "jvm.Copy.time": {
+            "value": 80
+        },
+        "jvm.MarkSweepCompact.count": {
+            "value": 0
+        },
+        "jvm.MarkSweepCompact.time": {
+            "value": 0
+        },
+        "jvm.heap.committed": {
+            "value": 518979584
+        },
+        "jvm.heap.init": {
+            "value": 536870912
+        },
+        "jvm.heap.max": {
+            "value": 518979584
+        },
+        "jvm.heap.usage": {
+            "value": 0.18162479393409048
+        },
+        "jvm.heap.used": {
+            "value": 94259560
+        },
+        "jvm.non-heap.committed": {
+            "value": 40239104
+        },
+        "jvm.non-heap.init": {
+            "value": 35815424
+        },
+        "jvm.non-heap.max": {
+            "value": 190840832
+        },
+        "jvm.non-heap.usage": {
+            "value": 0.15982625772664835
+        },
+        "jvm.non-heap.used": {
+            "value": 30501376
+        },
+        "jvm.pools.Code-Cache.usage": {
+            "value": 0.07386589050292969
+        },
+        "jvm.pools.Eden-Space.usage": {
+            "value": 0.6331582540994162
+        },
+        "jvm.pools.Perm-Gen-[shared-ro].usage": {
+            "value": 0.5878173828125
+        },
+        "jvm.pools.Perm-Gen-[shared-rw].usage": {
+            "value": 0.5904286702473959
+        },
+        "jvm.pools.Perm-Gen.usage": {
+            "value": 0.10751056671142578
+        },
+        "jvm.pools.Survivor-Space.usage": {
+            "value": 0.029658167353479852
+        },
+        "jvm.pools.Tenured-Gen.usage": {
+            "value": 0.008673093468223637
+        },
+        "jvm.total.committed": {
+            "value": 559218688
+        },
+        "jvm.total.init": {
+            "value": 572686336
+        },
+        "jvm.total.max": {
+            "value": 709820416
+        },
+        "jvm.total.used": {
+            "value": 124760936
+        },
+        "master.apps": {
+            "value": 1
+        },
+        "master.waitingApps": {
+            "value": 1
+        },
+        "master.workers": {
+            "value": 1
+        }
+    },
+    "histograms": {},
+    "meters": {},
+    "timers": {},
+    "version": "3.0.0"
+}
