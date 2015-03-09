@@ -1,21 +1,37 @@
-# boundary-plugin-spark
-A Boundary spark plugin that collects metrics from the MetricsServlet sink. http://spark.apache.org/docs/1.2.0/monitoring.html
+# Spark Plugin
+
+A Boundary Meter plugin that collects metrics from the Spark MetricsServlet sink.
+For reference see - http://spark.apache.org/docs/1.2.0/monitoring.html
 
 ### Supported OS
+
 |    OS   | Linux | Windows | OS X |
 |:-------:|:-----:|:-------:|:----:|
 |Supported|   v   |    v    |  v   |
 
 
 ### Plugin setup
+
 MetricsServlet is added by default as a sink in master, worker and client driver.
-See the conf/metrics.properties file on you Spark installation for more details.
+See the conf/metrics.properties file on your Spark installation for more details.
 
 You can also enable the *jvm source* for instance master, worker, driver and executor to get detailed metrics of the JVM.
 
 The plugin get metrics from the master and a running application. So you need to configure the host and port for the WebUI of the master and application process.
 
 By default, the WebUI for the master runs on port 8080 and, for example, the WebUI for the shell application runs on 4040. These are the default values for this parameters. You can change them based on your configuration.
+
+#### Parameters
+
+|Property     |UI Display Name|Description|                    |
+|:-----------:|:-------------:|:---------:|
+|host|Master Host|Host of the metrics on the Master WebUI|
+|port|Master Port|Port of the metrics on the Master WebUI|
+|path|Master Path|Path of the metrics on the Master WebUI|
+|app_host|Application Host|Host of the metrics on the Application WebUI|
+|app_port|Application Port|Port of the metrics on the Application WebUI|
+|app_path|Application Path|Path of the metrics on the Application WebUI|
+|pollInterval|Poll Time (sec)|The Poll Interval to call the command. Defaults 5 seconds|
 
 ### Metrics collected
 Tracks the following metrics for Spark.
