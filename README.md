@@ -23,8 +23,8 @@ By default, the WebUI for the master runs on port 8080 and, for example, the Web
 
 #### Parameters
 
-|Property     |UI Display Name|Description|                    |
-|:-----------:|:-------------:|:---------:|
+|  Property   | UI Display Name | Description |                    |
+|:-----------:|:---------------:|:-----------:|
 |host|Master Host|Host of the metrics on the Master WebUI|
 |port|Master Port|Port of the metrics on the Master WebUI|
 |path|Master Path|Path of the metrics on the Master WebUI|
