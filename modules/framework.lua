@@ -143,7 +143,7 @@ end
 function HttpPlugin:error(err)
 	local msg = tostring(err)
 
-	print(msg)
+	process.stderr:write(msg)
 end
 
 function HttpPlugin:makeRequest(reqOptions, successCallback)
