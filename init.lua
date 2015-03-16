@@ -1,4 +1,4 @@
-local framework = require('framework/framework.lua')
+local framework = require('framework.lua')
 local http = require('http')
 local json = require('json')
 local Plugin = framework.Plugin
