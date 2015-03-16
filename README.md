@@ -3,12 +3,16 @@
 A Boundary Meter plugin that collects metrics from the Spark MetricsServlet sink.
 For reference see - http://spark.apache.org/docs/1.2.0/monitoring.html
 
+## Prerequisites
+
 ### Supported OS
 
-|    OS   | Linux | Windows | OS X |
-|:-------:|:-----:|:-------:|:----:|
-|Supported|   v   |    v    |  v   |
+|     OS    | Linux | Windows | SmartOS | OS X |
+|:----------|:-----:|:-------:|:-------:|:----:|
+| Supported |   v   |    v    |    v    |  v   |
 
+- Written in pure Lua/Luvit (embedded in `boundary-meter`) therefore **no dependencies** are required.
+- Metrics are collected via HTTP requests, therefore **all OSes** should work (tested on **Debian-based Linux** distributions).
 
 ### Plugin setup
 
@@ -17,7 +21,7 @@ See the conf/metrics.properties file on your Spark installation for more details
 
 You can also enable the *jvm source* for instance master, worker, driver and executor to get detailed metrics of the JVM.
 
-The plugin get metrics from the master and a running application. So you need to configure the host and port for the WebUI of the master and application process.
+The plugin gathers metrics from the master and a defined, running application. So you need to configure the host and port for the WebUI of the master and application process.
 
 By default, the WebUI for the master runs on port 8080 and, for example, the WebUI for the shell application runs on 4040. These are the default values for this parameters. You can change them based on your configuration.
 
