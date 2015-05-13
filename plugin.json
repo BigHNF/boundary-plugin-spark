@@ -1,5 +1,5 @@
 {
-    "description": "Gathers information from the Spark Master host about the entire Spark environment."
+    "description": "Gathers information from the Spark Master host about the entire Spark environment.",
     "icon" : "icon.png",
     "command": "boundary-meter init.lua",
     "command_lua": "boundary-meter init.lua",
