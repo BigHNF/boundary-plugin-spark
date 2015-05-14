@@ -3,216 +3,216 @@
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
     "description": "Block manager disk space used",
-    "displayName": "App Disk Used",
-    "displayNameShort": "App Disk Used",
+    "displayName": "Spark App Disk Used",
+    "displayNameShort": "Spark App Disk Use",
     "unit": "bytecount"
   },
   "SPARK_APP_BLKMGR_MEMORY_FREE": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
     "description": "Block manager remaining memory",
-    "displayName": "App Remaining Memory",
-    "displayNameShort": "App Remaining Memory",
+    "displayName": "Spark App Remaining Memory",
+    "displayNameShort": "Spark App Rem Mem",
     "unit": "bytecount"
   },
   "SPARK_APP_BLKMGR_MEMORY_USED": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
     "description": "Block manager memory used",
-    "displayName": "App Memory Used",
-    "displayNameShort": "App Memory Used",
+    "displayName": "Spark App Memory Used",
+    "displayNameShort": "Spark App Mem Use",
     "unit": "bytecount"
   },
   "SPARK_APP_JOBS_ACTIVE": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
     "description": "Jobs running on the application",
-    "displayName": "App Active Jobs",
-    "displayNameShort": "App Active Jobs",
+    "displayName": "Spark App Active Jobs",
+    "displayNameShort": "Spark App Act Jobs",
     "unit": "number"
   },
   "SPARK_APP_JOBS_ALL": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
     "description": "All jobs created by the application.",
-    "displayName": "App Total Jobs",
-    "displayNameShort": "App Total Jobs",
+    "displayName": "Spark App Total Jobs",
+    "displayNameShort": "Spark App Tot Jobs",
     "unit": "number"
   },
   "SPARK_APP_JVM_HEAP_MEMORY_COMMITTED": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
     "description": "Heap memory committed by the JVM of the app",
-    "displayName": "App JVM Heap Committed",
-    "displayNameShort": "App JVM Heap Committed",
+    "displayName": "Spark App JVM Heap Committed",
+    "displayNameShort": "Spark App JVM Heap Commit",
     "unit": "bytecount"
   },
   "SPARK_APP_JVM_HEAP_MEMORY_USAGE": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
     "description": "Percentage of heap memory in use by the JVM of the app",
-    "displayName": "App JVM Heap Usage",
-    "displayNameShort": "App JVM Heap Usage",
+    "displayName": "Spark App JVM Heap Usage",
+    "displayNameShort": "Spark App JVM Heap Usage",
     "unit": "percent"
   },
   "SPARK_APP_JVM_HEAP_MEMORY_USED": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
     "description": "Heap memory used by the JVM of the app",
-    "displayName": "App JVM Heap Used",
-    "displayNameShort": "App JVM Heap Used",
+    "displayName": "Spark App JVM Heap Used",
+    "displayNameShort": "Spark App JVM Heap Use",
     "unit": "bytecount"
   },
   "SPARK_APP_JVM_MEMORY_COMMITTED": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
     "description": "Memory committed by the JVM of the app",
-    "displayName": "App JVM Mem Committed",
-    "displayNameShort": "App JVM Mem Committed",
+    "displayName": "Spark App JVM Mem Committed",
+    "displayNameShort": "Spark App JVM Mem Commit",
     "unit": "bytecount"
   },
   "SPARK_APP_JVM_MEMORY_USED": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
     "description": "Memory used by the JVM of the app",
-    "displayName": "App JVM Mem Used",
-    "displayNameShort": "App JVM Mem Used",
+    "displayName": "Spark App JVM Mem Used",
+    "displayNameShort": "Spark App JVM Mem Use",
     "unit": "bytecount"
   },
   "SPARK_APP_JVM_NOHEAP_MEMORY_COMMITTED": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
     "description": "Non-heap memory committed by the JVM of the app",
-    "displayName": "App Non-heap Committed",
-    "displayNameShort": "App Non-heap Committed",
+    "displayName": "Spark App Non-heap Committed",
+    "displayNameShort": "Spark App Non-heap Commit",
     "unit": "bytecount"
   },
   "SPARK_APP_JVM_NONHEAP_MEMORY_USAGE": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
     "description": "Percentage of non-heap memory in use by the JVM of the app",
-    "displayName": "App Non-heap Usage",
-    "displayNameShort": "App Non-heap Usage",
+    "displayName": "Spark App Non-heap Usage",
+    "displayNameShort": "Spark App Non-heap Usage",
     "unit": "bytecount"
   },
   "SPARK_APP_JVM_NONHEAP_MEMORY_USED": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
     "description": "Non-heap memory used by the JVM of the app",
-    "displayName": "App Non-heap Used",
-    "displayNameShort": "App Non-heap Used",
+    "displayName": "Spark App Non-heap Used",
+    "displayNameShort": "Spark App Non-heap Use",
     "unit": "bytecount"
   },
   "SPARK_APP_STAGES_FAILED": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
     "description": "Failed stages for the application.",
-    "displayName": "App Failed Stages",
-    "displayNameShort": "App Failed Stages",
+    "displayName": "Spark App Failed Stages",
+    "displayNameShort": "Spark App Fail Stages",
     "unit": "number"
   },
   "SPARK_APP_STAGES_RUNNING": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
     "description": "Running stages for the application.",
-    "displayName": "App Stages Running",
-    "displayNameShort": "App Stages Running",
+    "displayName": "Spark App Stages Running",
+    "displayNameShort": "Spark App Stages Run",
     "unit": "number"
   },
   "SPARK_APP_STAGES_WAITING": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
     "description": "Waiting stages for the application.",
-    "displayName": "App Stages Waiting",
-    "displayNameShort": "App Stages Waiting",
+    "displayName": "Spark App Stages Waiting",
+    "displayNameShort": "Spark App Stages Wait",
     "unit": "number"
   },
   "SPARK_MASTER_APPLICATIONS_RUNNING_COUNT": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
     "description": "Running application count on the master.",
-    "displayName": "Master Apps Running",
-    "displayNameShort": "Master Apps Running",
+    "displayName": "Spark Master Apps Running",
+    "displayNameShort": "Spark Mstr Apps Run",
     "unit": "number"
   },
   "SPARK_MASTER_APPLICATIONS_WAITING_COUNT": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
     "description": "Waiting application count on the master.",
-    "displayName": "Master Apps Waiting",
-    "displayNameShort": "Master Apps Waiting",
+    "displayName": "Spark Master Apps Waiting",
+    "displayNameShort": "Spark Mstr Apps Wait",
     "unit": "number"
   },
   "SPARK_MASTER_JVM_HEAP_MEMORY_COMMITTED": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
     "description": "Heap memory committed by the JVM on the master.",
-    "displayName": "Master JVM heap Mem Committed",
-    "displayNameShort": "Master heap Mem Committed",
+    "displayName": "Spark Master JVM heap Mem Committed",
+    "displayNameShort": "Spark Mstr heap Commit",
     "unit": "bytecount"
   },
   "SPARK_MASTER_JVM_HEAP_MEMORY_USAGE": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
     "description": "Percentage of heap memory used by the JVM on the master.",
-    "displayName": "Master JVM Heap Mem Usage",
-    "displayNameShort": "Master Heap Mem Usage",
+    "displayName": "Spark Master JVM Heap Mem Usage",
+    "displayNameShort": "Spark Mstr Heap Usage",
     "unit": "percent"
   },
   "SPARK_MASTER_JVM_HEAP_MEMORY_USED": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
     "description": "Heap memory used by the JVM on the master.",
-    "displayName": "Master JVM Heap Mem Used",
-    "displayNameShort": "Master Heap Mem Used",
+    "displayName": "Spark Master JVM Heap Mem Used",
+    "displayNameShort": "Spark Mstr Heap Use",
     "unit": "bytecount"
   },
   "SPARK_MASTER_JVM_MEMORY_COMMITTED": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
     "description": "Memory committed by the JVM on the master.",
-    "displayName": "Master JVM Mem Committed",
-    "displayNameShort": "Master Mem Committed",
+    "displayName": "Spark Master JVM Mem Committed",
+    "displayNameShort": "Spark Mstr Mem Commit",
     "unit": "bytecount"
   },
   "SPARK_MASTER_JVM_MEMORY_USED": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
     "description": "Memory used by the JVM on the master.",
-    "displayName": "Master JVM Mem Used",
-    "displayNameShort": "Master Mem Used",
+    "displayName": "Spark Master JVM Mem Used",
+    "displayNameShort": "Spark Mstr Mem Use",
     "unit": "bytecount"
   },
   "SPARK_MASTER_JVM_NONHEAP_MEMORY_COMMITTED": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
     "description": "Non-heap memory committed by the JVM on the master.",
-    "displayName": "Master JVM Non-heap Mem Committed",
-    "displayNameShort": "Master Non-heap Mem Committed",
+    "displayName": "Spark Master JVM Non-heap Mem Committed",
+    "displayNameShort": "Spark Mstr Non-heap Commit",
     "unit": "bytecount"
   },
   "SPARK_MASTER_JVM_NONHEAP_MEMORY_USAGE": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
     "description": "Percentage of non-heap memory usage by the JVM on the master.",
-    "displayName": "Master JVM Non-heap Mem Usage",
-    "displayNameShort": "Master Non-heap Mem Usage",
+    "displayName": "Spark Master JVM Non-heap Mem Usage",
+    "displayNameShort": "Spark Mstr Non-heap Use",
     "unit": "percent"
   },
   "SPARK_MASTER_JVM_NONHEAP_MEMORY_USED": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
     "description": "Non-heap memory used by the JVM on the master.",
-    "displayName": "Master JVM Non-heap Mem Used",
-    "displayNameShort": "Master Non-heap Mem Used",
+    "displayName": "Spark Master JVM Non-heap Mem Used",
+    "displayNameShort": "Spark Mstr Non-heap Mem Used",
     "unit": "bytecount"
   },
   "SPARK_MASTER_WORKERS_COUNT": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
     "description": "The number of active workers on the master.",
-    "displayName": "Master Workers",
-    "displayNameShort": "Master Workers",
+    "displayName": "Spark Master Workers",
+    "displayNameShort": "Spark Mstr Workers",
     "unit": "number"
   }
 }
