@@ -53,7 +53,7 @@
     "description": "Percentage of heap memory in use by the JVM of the app",
     "displayName": "App JVM Heap Usage",
     "displayNameShort": "App JVM Heap Usage",
-    "unit": "percentage"
+    "unit": "percent"
   },
   "SPARK_APP_JVM_HEAP_MEMORY_USED": {
     "defaultAggregate": "avg",
@@ -197,7 +197,7 @@
     "description": "Percentage of non-heap memory usage by the JVM on the master.",
     "displayName": "Master JVM Non-heap Mem Usage",
     "displayNameShort": "Master Non-heap Mem Usage",
-    "unit": "percentage"
+    "unit": "percent"
   },
   "SPARK_MASTER_JVM_NONHEAP_MEMORY_USED": {
     "defaultAggregate": "avg",
