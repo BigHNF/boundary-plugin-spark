@@ -33,9 +33,9 @@ pollers:add(DataSourcePoller:new(params.pollInterval, ds_app))
 local plugin = Plugin:new(params, pollers)
 
 local function getFuzzy(fuzzyKey, map)
-	local predicate = partial(contains, escape(fuzzyKey))
+  local predicate = partial(contains, escape(fuzzyKey))
   local k = filter(predicate, keys(map))[1]
-	return get(k, map)
+  return get(k, map)
 end
 
 local getValue = partial(get, 'value')
@@ -43,12 +43,12 @@ local getFuzzyValue = compose(getFuzzy, getValue)
 local getFuzzyNumber = compose(getFuzzyValue, tonumber)
 
 local function megaBytesToBytes(mb)
-	return mb * 1024 * 1024
+  return mb * 1024 * 1024
 end
 
 function plugin:onParseValues(data, extra)
-	local parsed = json.parse(data)	
-	local result = {}
+  local parsed = json.parse(data) 
+  local result = {}
   if extra.info == 'master' then
     result['SPARK_MASTER_WORKERS_COUNT'] = tonumber(parsed.gauges['master.workers'].value)
     result['SPARK_MASTER_APPLICATIONS_RUNNING_COUNT'] = tonumber(parsed.gauges['master.apps'].value)
@@ -80,11 +80,7 @@ function plugin:onParseValues(data, extra)
     result['SPARK_APP_JVM_NONHEAP_MEMORY_USED'] = getFuzzyNumber('jvm.non-heap.used', parsed)
     result['SPARK_APP_JVM_NONHEAP_MEMORY_USAGE'] = getFuzzyNumber('jvm.non-heap.usage', parsed)
   end
-	return result
+  return result
 end
 
 plugin:run()
-
---[[local function head(t)
-  return next(t)
-end]]
