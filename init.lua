@@ -4,17 +4,11 @@ local Plugin = framework.Plugin
 local WebRequestDataSource = framework.WebRequestDataSource
 local PollerCollection = framework.PollerCollection
 local DataSourcePoller = framework.DataSourcePoller
-require('fun')()
 local string = require('string')
 local table = require('table')
-local get = framework.table.get
-local partial = framework.functional.partial
-local contains = framework.string.contains
-local compose = framework.functional.compose
-local keys = framework.table.keys
-local escape = framework.string.escape
-local clone = framework.table.clone
-local notEmpty = framework.string.notEmpty
+framework.functional()
+framework.table()
+framework.string()
 
 local params = framework.boundary.param
 params.name = 'Spark Plugin'
@@ -40,8 +34,7 @@ local plugin = Plugin:new(params, pollers)
 
 local function getFuzzy(fuzzyKey, map)
 	local predicate = partial(contains, escape(fuzzyKey))
-	local k = head(filter(predicate, keys(map)))
-  --p(k)
+  local k = filter(predicate, keys(map))[1]
 	return get(k, map)
 end
 
