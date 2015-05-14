@@ -1,11 +1,11 @@
-# Spark Plugin
-
+# Boundary Spark Plugin
+-----------------------------------
 A Boundary Meter plugin that collects metrics from the Spark MetricsServlet sink.
 For reference see - http://spark.apache.org/docs/1.2.0/monitoring.html
 
-## Prerequisites
+### Prerequisites
 
-### Supported OS
+#### Supported OS
 
 |     OS    | Linux | Windows | SmartOS | OS X |
 |:----------|:-----:|:-------:|:-------:|:----:|
@@ -21,16 +21,19 @@ For reference see - http://spark.apache.org/docs/1.2.0/monitoring.html
 
 ### Plugin setup
 
+#### MetricsServlet
 MetricsServlet is added by default as a sink in master, worker and client driver.
 See the conf/metrics.properties file on your Spark installation for more details.
 
+#### *jvm source*
 You can also enable the *jvm source* for instance master, worker, driver and executor to get detailed metrics of the JVM.
 
 The plugin gathers metrics from the master and a defined, running application. So you need to configure the host and port for the WebUI of the master and application process.
 
+#### WebUI Ports
 By default, the WebUI for the master runs on port 8080 and, for example, the WebUI for the shell application runs on 4040. These are the default values for this parameters. You can change them based on your configuration.
 
-#### Parameters
+### Plugin Configuration Fields
 
 |  Property   | UI Display Name | Description |
 |:-----------:|:---------------:|:-----------:|
