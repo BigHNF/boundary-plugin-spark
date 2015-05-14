@@ -14,6 +14,11 @@ For reference see - http://spark.apache.org/docs/1.2.0/monitoring.html
 - Written in pure Lua/Luvit (embedded in `boundary-meter`) therefore **no dependencies** are required.
 - Metrics are collected via HTTP requests, therefore **all OSes** should work (tested on **Debian-based Linux** distributions).
 
+#### Boundary Meter Versions V4.0 or later
+
+- To install new meter go to Settings->Installation or [see instructons|https://help.boundary.com/hc/en-us/sections/200634331-Installation]. 
+- To upgrade the meter to the latest version - [see instructons|https://help.boundary.com/hc/en-us/articles/201573102-Upgrading-the-Boundary-Meter].
+
 ### Plugin setup
 
 MetricsServlet is added by default as a sink in master, worker and client driver.
