@@ -143,13 +143,21 @@
     "displayNameShort": "Master Apps Waiting",
     "unit": "number"
   },
+  "SPARK_MASTER_JVM_HEAP_MEMORY_COMMITTED": {
+    "defaultAggregate": "avg",
+    "defaultResolutionMS": 1000,
+    "description": "Heap memory committed by the JVM on the master.",
+    "displayName": "Master JVM heap Mem Committed",
+    "displayNameShort": "Master heap Mem Committed",
+    "unit": "bytecount"
+  },
   "SPARK_MASTER_JVM_HEAP_MEMORY_USAGE": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
     "description": "Percentage of heap memory used by the JVM on the master.",
     "displayName": "Master JVM Heap Mem Usage",
     "displayNameShort": "Master Heap Mem Usage",
-    "unit": "percentage"
+    "unit": "percent"
   },
   "SPARK_MASTER_JVM_HEAP_MEMORY_USED": {
     "defaultAggregate": "avg",
