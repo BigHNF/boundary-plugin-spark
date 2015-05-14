@@ -1,92 +1,46 @@
 local framework = require('framework.lua')
-local http = require('http')
 local json = require('json')
 local Plugin = framework.Plugin
-local HttpPlugin = framework.HttpPlugin
+local WebRequestDataSource = framework.WebRequestDataSource
+local PollerCollection = framework.PollerCollection
+local DataSourcePoller = framework.DataSourcePoller
 require('fun')()
 local string = require('string')
 local table = require('table')
+local get = framework.table.get
+local partial = framework.functional.partial
+local contains = framework.string.contains
+local compose = framework.functional.compose
+local keys = framework.table.keys
+local escape = framework.string.escape
+local clone = framework.table.clone
 
 local params = framework.boundary.param
 params.name = 'Spark Master Plugin'
-params.version = '1.0'
+params.tags = 'spark'
+params.version = '2.0'
 
-local pluginMaster = HttpPlugin:new(params)
+local ds_master = WebRequestDataSource:new(params)
+local pluginMaster = Plugin:new(params, ds_master)
 
-function get(key, map)
-	return map[key]
-end
-
-function contains(pattern, str)
-	local s,e = string.find(str, pattern)
-
-	return s ~= nil
-end
-
-function partial(func, x) 
-
-	return function (...)
-		return func(x, ...) 
-	end
-end
-
-function compose(f, g)
-	return function(...) 
-		return g(f(...))
-	end
-end
-
-function escape(str)
-	local s, c = string.gsub(str, '%.', '%%.')
-	s, c = string.gsub(s, '%-', '%%-')
-	return s
-end
-
-function keys(map)
-	local result = {}
-	for k,_ in pairs(map) do
-		table.insert(result, k)
-	end
-
-	return result
-end
-
-function clone(t)
-	if type(t) ~= 'table' then return t end
-
-	local meta = getmetatable(t)
-	local target = {}
-	for k,v in pairs(t) do
-		if type(v) == 'table' then
-			target[k] = clone(v)
-		else
-			target[k] = v
-		end
-	end
-	setmetatable(target, meta)
-	return target
-end
-
-function pluginMaster:onParseResponse(data)
+function pluginMaster:onParseValues(data)
 	local parsed = json.parse(data)	
 	local result = {}
-
-	result['SPARK_MASTER_WORKERS_COUNT'] = tonumber(get('value', get('master.workers', get('gauges', parsed))))
-	result['SPARK_MASTER_APPLICATIONS_RUNNING_COUNT'] = tonumber(get('value', get('master.apps', get('gauges', parsed))))
-	result['SPARK_MASTER_APPLICATIONS_WAITING_COUNT'] = tonumber(get('value', get('master.waitingApps', get('gauges', parsed))))
-	result['SPARK_MASTER_JVM_MEMORY_USED'] = tonumber(get('value', get('jvm.total.used', get('gauges', parsed))))
-	result['SPARK_MASTER_JVM_MEMORY_COMMITTED'] = tonumber(get('value', get('jvm.total.committed', get('gauges', parsed))))
-	result['SPARK_MASTER_JVM_HEAP_MEMORY_COMMITTED'] = tonumber(get('value', get('jvm.heap.committed', get('gauges', parsed))))
-	result['SPARK_MASTER_JVM_HEAP_MEMORY_USED'] = tonumber(get('value', get('jvm.heap.used', get('gauges', parsed))))
-	result['SPARK_MASTER_JVM_HEAP_MEMORY_USAGE'] = tonumber(get('value', get('jvm.heap.usage', get('gauges', parsed))))
-	result['SPARK_MASTER_JVM_NONHEAP_MEMORY_COMMITTED'] = tonumber(get('value', get('jvm.non-heap.committed', get('gauges', parsed))))
-	result['SPARK_MASTER_JVM_NONHEAP_MEMORY_USED'] = tonumber(get('value', get('jvm.non-heap.used', get('gauges', parsed))))
-	result['SPARK_MASTER_JVM_NONHEAP_MEMORY_USAGE'] = tonumber(get('value', get('jvm.non-heap.usage', get('gauges', parsed))))
-
+	result['SPARK_MASTER_WORKERS_COUNT'] = tonumber(parsed.gauges['master.workers'].value)
+	result['SPARK_MASTER_APPLICATIONS_RUNNING_COUNT'] = tonumber(parsed.gauges['master.apps'].value)
+	result['SPARK_MASTER_APPLICATIONS_WAITING_COUNT'] = tonumber(parsed.gauges['master.waitingApps'].value)
+	result['SPARK_MASTER_JVM_MEMORY_USED'] = tonumber(parsed.gauges['jvm.total.used'].value)
+	result['SPARK_MASTER_JVM_MEMORY_COMMITTED'] = tonumber(parsed.gauges['jvm.total.committed'].value)
+	result['SPARK_MASTER_JVM_HEAP_MEMORY_COMMITTED'] = tonumber(parsed.gauges['jvm.heap.committed'].value)
+	result['SPARK_MASTER_JVM_HEAP_MEMORY_USED'] = tonumber(parsed.gauges['jvm.heap.used'].value)
+	result['SPARK_MASTER_JVM_HEAP_MEMORY_USAGE'] = tonumber(parsed.gauges['jvm.heap.usage'].value)
+	result['SPARK_MASTER_JVM_NONHEAP_MEMORY_COMMITTED'] = tonumber(parsed.gauges['jvm.non-heap.committed'].value)
+	result['SPARK_MASTER_JVM_NONHEAP_MEMORY_USED'] = tonumber(parsed.gauges['jvm.non-heap.used'].value)
+	result['SPARK_MASTER_JVM_NONHEAP_MEMORY_USAGE'] = tonumber(parsed.gauges['jvm.non-heap.usage'].value)
 	return result
 end
 
-pluginMaster:poll()
+pluginMaster:run()
 
 -- Params for App
 local appParams = clone(params)
@@ -94,7 +48,8 @@ appParams.name = 'Spark App Plugin'
 appParams.host = params.app_host
 appParams.port = params.app_port
 appParams.path = params.app_path
-local pluginWebUI = HttpPlugin:new(appParams)
+local ds_app = WebRequestDataSource:new(appParams)  
+local pluginWebUI = Plugin:new(appParams, ds_app)
 
 function getFuzzy(fuzzyKey, map)
 	local predicate = partial(contains, escape(fuzzyKey))
@@ -111,7 +66,7 @@ function megaBytesToBytes(mb)
 	return mb * 1024 * 1024
 end
 
-function pluginWebUI:onParseResponse(data)
+function pluginWebUI:onParseValues(data)
 	local parsed = json.parse(data)
 	parsed = get('gauges', parsed)
 	local result = {}
@@ -135,4 +90,4 @@ function pluginWebUI:onParseResponse(data)
 	return result
 end
 
-pluginWebUI:poll()
+pluginWebUI:run()
