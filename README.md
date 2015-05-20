@@ -1,5 +1,6 @@
 # Boundary Spark Plugin
------------------------------------
+=======================
+
 A Boundary Meter plugin that collects metrics from the Spark MetricsServlet sink.
 For reference see - http://spark.apache.org/docs/1.2.0/monitoring.html
 
