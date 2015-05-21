@@ -5,7 +5,6 @@
   "command_lua": "boundary-meter init.lua",
   "postExtract" : "",
   "postExtract_lua" : "",
-
   "metrics" : [
     "SPARK_MASTER_WORKERS_COUNT",
     "SPARK_MASTER_APPLICATIONS_RUNNING_COUNT",
@@ -97,12 +96,19 @@
       "required": true
     },
     {
-      "title": "Poll Time (sec)",
+      "title": "Poll Time (ms)",
       "name": "pollInterval",
-      "description": "The Poll Interval to call the command. Defaults 5 seconds",
-      "type": "string",
-      "default": 2,
+      "description": "The Poll Interval to call the command. Defaults 2000 milliseconds (2 seconds)",
+      "type": "number",
+      "default": 2000,
       "required": false
+    },
+    {
+      "title" : "Source",
+      "name" : "source",
+      "description" : "The Source to display in the legend for the spark data. It will default to the hostname of the server",
+      "type" : "string",
+      "required" : false
     }
   ]
 }

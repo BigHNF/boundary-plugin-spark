@@ -1,5 +1,5 @@
 Boundary Spark Plugin
-=======================
+=====================
 
 A Boundary Meter plugin that collects metrics from the Spark MetricsServlet sink.
 For reference see - http://spark.apache.org/docs/1.2.0/monitoring.html
@@ -12,17 +12,12 @@ For reference see - http://spark.apache.org/docs/1.2.0/monitoring.html
 |:----------|:-----:|:-------:|:-------:|:----:|
 | Supported |   v   |    v    |    v    |  v   |
 
-- Written in pure Lua/Luvit (embedded in `boundary-meter`) therefore **no dependencies** are required.
-- Metrics are collected via HTTP requests, therefore **all OSes** should work (tested on **Debian-based Linux** distributions).
-
-### Boundary Meter Versions V4.0 or later
+#### Boundary Meter Versions V4.0 or greater
 
 - To install new meter go to Settings->Installation or [see instructons](https://help.boundary.com/hc/en-us/sections/200634331-Installation). 
 - To upgrade the meter to the latest version - [see instructons](https://help.boundary.com/hc/en-us/articles/201573102-Upgrading-the-Boundary-Meter).
 
-## Plugin setup
-
-### Spark Configuration
+### Plugin Setup
 
 #### MetricsServlet
 MetricsServlet is added by default as a sink in master, worker and client driver.
@@ -46,7 +41,8 @@ By default, the WebUI for the master runs on port 8080 and, for example, the Web
 |app_host|Application Host|Host of the metrics on the Application WebUI|
 |app_port|Application Port|Port of the metrics on the Application WebUI|
 |app_path|Application Path|Path of the metrics on the Application WebUI|
-|pollInterval|Poll Time (sec)|The Poll Interval to call the command. Defaults 5 seconds|
+|pollInterval|Poll Time (ms)|The Poll Interval to call the command. Defaults 2000 milliseconds (2 seconds)|
+|source|Source|The source to display in the leged for this instance.|
 
 ### Metrics collected
 Tracks the following metrics for Spark.
@@ -79,3 +75,7 @@ Tracks the following metrics for Spark.
 | SPARK_APP_JVM_NOHEAP_MEMORY_COMMITTED | Non-heap memory committed by the JVM of the app | App |
 | SPARK_APP_JVM_NONHEAP_MEMORY_USED | Non-heap memory used by the JVM of the app | App |
 | SPARK_APP_JVM_NONHEAP_MEMORY_USAGE | Percentage of non-heap memory in use by the JVM of the app | App |
+
+### References
+
+None

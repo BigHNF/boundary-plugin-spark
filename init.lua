@@ -15,7 +15,7 @@ params.name = 'Spark Plugin'
 params.tags = 'spark'
 params.version = '2.0'
 params.meta = 'master'
-params.pollInterval = notEmpty(params.pollInterval, 1000)
+params.pollInterval = notEmpty(params.pollInterval, 2000)
 local ds_master = WebRequestDataSource:new(params)
 
 -- Params for App
