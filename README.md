@@ -46,7 +46,8 @@ By default, the WebUI for the master runs on port 8080 and, for example, the Web
 |app_host|Application Host|Host of the metrics on the Application WebUI|
 |app_port|Application Port|Port of the metrics on the Application WebUI|
 |app_path|Application Path|Path of the metrics on the Application WebUI|
-|pollInterval|Poll Time (sec)|The Poll Interval to call the command. Defaults 5 seconds|
+|pollInterval|Poll Time (ms)|The Poll Interval to call the command. Defaults 2000 milliseconds (2 seconds)|
+|source|Source|The source to display in the leged for this instance.|
 
 ### Metrics collected
 Tracks the following metrics for Spark.
