@@ -1,4 +1,7 @@
 {
+  "name" : "Spark Plugin",
+  "tags" : "spark",
+  "version" : "2.0",
   "description": "Gathers information from the Spark Master host about the entire Spark environment.",
   "icon" : "icon.png",
   "command": "boundary-meter init.lua",
