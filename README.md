@@ -4,9 +4,9 @@ Boundary Spark Plugin
 A Boundary Meter plugin that collects metrics from the Spark MetricsServlet sink.
 For reference see - http://spark.apache.org/docs/1.2.0/monitoring.html
 
-## Prerequisites
+### Prerequisites
 
-### Supported OS
+#### Supported OS
 
 |     OS    | Linux | Windows | SmartOS | OS X |
 |:----------|:-----:|:-------:|:-------:|:----:|
@@ -75,6 +75,11 @@ Tracks the following metrics for Spark.
 | SPARK_APP_JVM_NOHEAP_MEMORY_COMMITTED | Non-heap memory committed by the JVM of the app | App |
 | SPARK_APP_JVM_NONHEAP_MEMORY_USED | Non-heap memory used by the JVM of the app | App |
 | SPARK_APP_JVM_NONHEAP_MEMORY_USAGE | Percentage of non-heap memory in use by the JVM of the app | App |
+
+### Dashboards
+
+- Spark Master Overview
+- Spark Application Overview
 
 ### References
 
