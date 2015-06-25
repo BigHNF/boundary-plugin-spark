@@ -1,8 +1,8 @@
 {
   "name" : "Boundary Apache Spark Plugin",
-  "version" : "0.9.0",
+  "version" : "0.9.1",
   "meterVersionRequired" : "4.2.0-611",
-  "os" : [ "Linux", "Windows", "SmartOS", "OS X" ],
+  "unsupportedPlatforms" : [ ],
   "tags" : "apache-spark",
   "description": "Gathers information from the Spark Master host about the entire Spark environment.",
   "icon" : "icon.png",
@@ -64,7 +64,7 @@
       "title": "Master port",
       "name": "port",
       "description": "Port of the Master WebUI",
-      "type": "string",
+      "type": "integer",
       "default": 8080,
       "required": true
     },
@@ -88,7 +88,7 @@
       "title": "Application port",
       "name": "app_port",
       "description": "Port of the Application WebUI",
-      "type": "string",
+      "type": "integer",
       "default": 4040,
       "required": true
     },
@@ -101,10 +101,10 @@
       "required": true
     },
     {
-      "title": "Poll Time (ms)",
+      "title": "Poll Interval (ms)",
       "name": "pollInterval",
-      "description": "The Poll Interval to call the command. Defaults 2000 milliseconds (2 seconds)",
-      "type": "number",
+      "description": "The Poll Interval (in milliseconds) to poll for metrics.",
+      "type": "integer",
       "default": 2000,
       "required": false
     },

@@ -1,11 +1,25 @@
+-- Copyright 2015 Boundary, Inc.
+--
+-- Licensed under the Apache License, Version 2.0 (the "License");
+-- you may not use this file except in compliance with the License.
+-- You may obtain a copy of the License at
+--
+--    http://www.apache.org/licenses/LICENSE-2.0
+--
+-- Unless required by applicable law or agreed to in writing, software
+-- distributed under the License is distributed on an "AS IS" BASIS,
+-- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+-- See the License for the specific language governing permissions and
+-- limitations under the License.
+
 local framework = require('framework.lua')
 local json = require('json')
 local Plugin = framework.Plugin
 local WebRequestDataSource = framework.WebRequestDataSource
 local PollerCollection = framework.PollerCollection
 local DataSourcePoller = framework.DataSourcePoller
-local string = require('string')
-local table = require('table')
+local megaBytesToBytes = framework.util.megaBytesToBytes
+local isHttpSuccess = framework.util.isHttpSuccess
 framework.functional()
 framework.table()
 framework.string()
@@ -39,12 +53,16 @@ local getValue = partial(get, 'value')
 local getFuzzyValue = compose(getFuzzy, getValue)
 local getFuzzyNumber = compose(getFuzzyValue, tonumber)
 
-local function megaBytesToBytes(mb)
-  return mb * 1024 * 1024
-end
-
 function plugin:onParseValues(data, extra)
-  local parsed = json.parse(data) 
+  if not isHttpSuccess(extra.status_code) then
+    self:emitEvent('error', ('Http Response status code %d instead of OK. Verify your Spark endpoint configuration.'):format(extra.status_code))
+    return
+  end
+  local success, parsed = pcall(json.parse, data) 
+  if not success then
+    self:emitEvent('error', 'Can not parse metrics. Verify your Spark endpoint configuration.') 
+    return
+  end
   local result = {}
   if extra.info == 'master' then
     result['SPARK_MASTER_WORKERS_COUNT'] = tonumber(parsed.gauges['master.workers'].value)
@@ -81,3 +99,4 @@ function plugin:onParseValues(data, extra)
 end
 
 plugin:run()
+
