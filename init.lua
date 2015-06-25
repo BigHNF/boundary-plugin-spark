@@ -4,8 +4,7 @@ local Plugin = framework.Plugin
 local WebRequestDataSource = framework.WebRequestDataSource
 local PollerCollection = framework.PollerCollection
 local DataSourcePoller = framework.DataSourcePoller
-local string = require('string')
-local table = require('table')
+local megaBytesToBytes = framework.util.megaBytesToBytes
 framework.functional()
 framework.table()
 framework.string()
@@ -39,12 +38,12 @@ local getValue = partial(get, 'value')
 local getFuzzyValue = compose(getFuzzy, getValue)
 local getFuzzyNumber = compose(getFuzzyValue, tonumber)
 
-local function megaBytesToBytes(mb)
-  return mb * 1024 * 1024
-end
-
 function plugin:onParseValues(data, extra)
-  local parsed = json.parse(data) 
+  local success, parsed = pcall(json.parse, data) 
+  if not success then
+    self:emitEvent('error', 'Can not parse metrics. Verify your Spark endpoint configuration.') 
+    return
+  end
   local result = {}
   if extra.info == 'master' then
     result['SPARK_MASTER_WORKERS_COUNT'] = tonumber(parsed.gauges['master.workers'].value)
