@@ -5,6 +5,7 @@ local WebRequestDataSource = framework.WebRequestDataSource
 local PollerCollection = framework.PollerCollection
 local DataSourcePoller = framework.DataSourcePoller
 local megaBytesToBytes = framework.util.megaBytesToBytes
+local isHttpSuccess = framework.util.isHttpSuccess
 framework.functional()
 framework.table()
 framework.string()
@@ -39,6 +40,10 @@ local getFuzzyValue = compose(getFuzzy, getValue)
 local getFuzzyNumber = compose(getFuzzyValue, tonumber)
 
 function plugin:onParseValues(data, extra)
+  if not isHttpSuccess(extra.status_code) then
+    self:emitEvent('error', ('Http Response status code %d instead of OK. Verify your Spark endpoint configuration.'):format(extra.status_code))
+    return
+  end
   local success, parsed = pcall(json.parse, data) 
   if not success then
     self:emitEvent('error', 'Can not parse metrics. Verify your Spark endpoint configuration.') 
