@@ -2,7 +2,7 @@
   "name" : "Boundary Apache Spark Plugin",
   "version" : "0.9.1",
   "meterVersionRequired" : "4.2.0-611",
-  "os" : [ "Linux", "Windows", "SmartOS", "OS X" ],
+  "unsupportedPlatforms" : [ ],
   "tags" : "apache-spark",
   "description": "Gathers information from the Spark Master host about the entire Spark environment.",
   "icon" : "icon.png",
