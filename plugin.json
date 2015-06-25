@@ -101,9 +101,9 @@
       "required": true
     },
     {
-      "title": "Poll Time (ms)",
+      "title": "Poll Interval (ms)",
       "name": "pollInterval",
-      "description": "The Poll Interval to call the command. Defaults 2000 milliseconds (2 seconds)",
+      "description": "The Poll Interval (in milliseconds) to poll for metrics.",
       "type": "integer",
       "default": 2000,
       "required": false
