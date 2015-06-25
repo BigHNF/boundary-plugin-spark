@@ -64,7 +64,7 @@
       "title": "Master port",
       "name": "port",
       "description": "Port of the Master WebUI",
-      "type": "string",
+      "type": "integer",
       "default": 8080,
       "required": true
     },
@@ -88,7 +88,7 @@
       "title": "Application port",
       "name": "app_port",
       "description": "Port of the Application WebUI",
-      "type": "string",
+      "type": "integer",
       "default": 4040,
       "required": true
     },
@@ -104,7 +104,7 @@
       "title": "Poll Time (ms)",
       "name": "pollInterval",
       "description": "The Poll Interval to call the command. Defaults 2000 milliseconds (2 seconds)",
-      "type": "number",
+      "type": "integer",
       "default": 2000,
       "required": false
     },
