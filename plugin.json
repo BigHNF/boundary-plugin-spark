@@ -57,7 +57,7 @@
       "name": "host",
       "description": "Host of the Master WebUI",
       "type": "string",
-      "default": "localhost",
+      "default": "127.0.0.1",
       "required": true
     },
     {
@@ -81,7 +81,7 @@
       "name": "app_host",
       "description": "Host of the Application WebUI",
       "type": "string",
-      "default": "localhost",
+      "default": "127.0.0.1",
       "required": true
     },
     {
