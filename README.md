@@ -1,7 +1,6 @@
 # Boundary Spark Plugin
 
 A Boundary Meter plugin that collects metrics from the Spark MetricsServlet sink.
-For reference see - http://spark.apache.org/docs/1.2.0/monitoring.html
 
 ### Prerequisites
 
@@ -47,7 +46,7 @@ By default, the WebUI for the master runs on port 8080 and, for example, the Web
 Tracks the following metrics for Spark.
 
 | Metric Name | Description | Context |
-|:-----------:|:-----------:|:-------:|
+|:------------|:------------|:--------|
 | SPARK_MASTER_WORKERS_COUNT | The number of active workers on the master. | Master |
 | SPARK_MASTER_APPLICATIONS_RUNNING_COUNT | Running application count on the master. | Master|
 | SPARK_MASTER_APPLICATIONS_WAITING_COUNT | Waiting application count on the master. | Master |
@@ -82,4 +81,4 @@ Tracks the following metrics for Spark.
 
 ### References
 
-None
+http://spark.apache.org/docs/1.2.0/monitoring.html
