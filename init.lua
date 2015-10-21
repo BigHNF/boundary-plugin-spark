@@ -20,6 +20,7 @@ local PollerCollection = framework.PollerCollection
 local DataSourcePoller = framework.DataSourcePoller
 local megaBytesToBytes = framework.util.megaBytesToBytes
 local isHttpSuccess = framework.util.isHttpSuccess
+local parseJson = framework.util.parseJson
 framework.functional()
 framework.table()
 framework.string()
@@ -58,7 +59,7 @@ function plugin:onParseValues(data, extra)
     self:emitEvent('error', ('Http Response status code %d instead of OK. Verify your Spark endpoint configuration.'):format(extra.status_code))
     return
   end
-  local success, parsed = pcall(json.parse, data) 
+  local success, parsed = parseJson(data) 
   if not success then
     self:emitEvent('error', 'Can not parse metrics. Verify your Spark endpoint configuration.') 
     return
