@@ -1,7 +1,7 @@
 {
-	"pollInterval":2000,
+	"pollInterval":1000,
 	"host": "localhost",
-	"port":8080,
+	"port":18080,
 	"path": "/metrics/master/json/",
 	"app_host": "localhost",
 	"app_port":4040,

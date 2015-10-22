@@ -42,11 +42,11 @@
 
   "dashboards": [
     {
-      "name":"Spark Master Overview",
+      "name":"Spark Master",
       "layout": "d-w=3&d-h=3&d-pad=5&d-bg=none&d-g-SPARK_MASTER_APPLICATIONS_RUNNING_COUNT=0-0-1-1-t&d-g-SPARK_MASTER_APPLICATIONS_WAITING_COUNT=0-0-1-1-b&d-g-SPARK_MASTER_JVM_HEAP_MEMORY_COMMITTED=0-1-1-1-t&d-g-SPARK_MASTER_JVM_HEAP_MEMORY_USED=0-1-1-1-b&d-g-SPARK_MASTER_JVM_HEAP_MEMORY_USAGE=0-2-1-1&d-g-SPARK_MASTER_JVM_MEMORY_COMMITTED=1-1-1-1-t&d-g-SPARK_MASTER_JVM_MEMORY_USED=1-1-1-1-b&d-g-SPARK_MASTER_JVM_NONHEAP_MEMORY_COMMITTED=2-1-1-1-t&d-g-SPARK_MASTER_JVM_NONHEAP_MEMORY_USED=2-1-1-1-b&d-g-SPARK_MASTER_JVM_NONHEAP_MEMORY_USAGE=2-2-1-1&d-g-SPARK_MASTER_WORKERS_COUNT=1-0-1-1"
     },
     {
-      "name":"Spark Application Overview",
+      "name":"Spark Application",
       "layout": "d-w=4&d-h=3&d-pad=5&d-bg=none&d-g-SPARK_APP_JVM_HEAP_MEMORY_USAGE=1-2-1-1&d-g-SPARK_APP_JVM_HEAP_MEMORY_COMMITTED=1-1-1-1-t&d-g-SPARK_APP_JVM_HEAP_MEMORY_USED=1-1-1-1-b&d-g-SPARK_APP_JVM_MEMORY_COMMITTED=2-1-1-1-t&d-g-SPARK_APP_JVM_MEMORY_USED=2-1-1-1-b&d-g-SPARK_APP_BLKMGR_MEMORY_USED=2-0-1-1&d-g-SPARK_APP_JVM_NOHEAP_MEMORY_COMMITTED=3-1-1-1-t&d-g-SPARK_APP_JVM_NONHEAP_MEMORY_USED=3-1-1-1-b&d-g-SPARK_APP_JVM_NONHEAP_MEMORY_USAGE=3-2-1-1&d-g-SPARK_APP_BLKMGR_MEMORY_FREE=2-2-1-1&d-g-SPARK_APP_STAGES_FAILED=0-2-1-1&d-g-SPARK_APP_STAGES_RUNNING=1-0-1-1-t&d-g-SPARK_APP_STAGES_WAITING=1-0-1-1-b&d-g-SPARK_APP_BLKMGR_DISK_SPACE_USED=3-0-1-1&d-g-SPARK_APP_JOBS_ALL=0-1-1-1-t&d-g-SPARK_APP_JOBS_ACTIVE=0-1-1-1-b&d-g-SPARK_MASTER_APPLICATIONS_RUNNING_COUNT=0-0-1-1-t&d-g-SPARK_MASTER_APPLICATIONS_WAITING_COUNT=0-0-1-1-b"
     }
   ],
@@ -61,15 +61,15 @@
       "required": true
     },
     {
-      "title": "Master port",
+      "title": "Master Port",
       "name": "port",
       "description": "Port of the Master WebUI",
       "type": "integer",
-      "default": 8080,
+      "default": 18080,
       "required": true
     },
     {
-      "title": "Master path",
+      "title": "Master Path",
       "name": "path",
       "description": "Path of the metrics on the Master WebUI",
       "type": "string",
@@ -77,7 +77,7 @@
       "required": true
     },
     {
-      "title": "Application Host",
+      "title": "App. Host",
       "name": "app_host",
       "description": "Host of the Application WebUI",
       "type": "string",
@@ -85,7 +85,7 @@
       "required": true
     },
     {
-      "title": "Application port",
+      "title": "App. Port",
       "name": "app_port",
       "description": "Port of the Application WebUI",
       "type": "integer",
@@ -93,7 +93,7 @@
       "required": true
     },
     {
-      "title": "Application path",
+      "title": "App. Path",
       "name": "app_path",
       "description": "Path of the metrics on the Application WebUI",
       "type": "string",
@@ -105,7 +105,7 @@
       "name": "pollInterval",
       "description": "The Poll Interval (in milliseconds) to poll for metrics.",
       "type": "integer",
-      "default": 2000,
+      "default": 1000,
       "required": false
     },
     {
