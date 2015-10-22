@@ -40,7 +40,9 @@ local ds_app = WebRequestDataSource:new(appParams)
 
 local pollers = PollerCollection:new()
 pollers:add(DataSourcePoller:new(params.pollInterval, ds_master))
-pollers:add(DataSourcePoller:new(params.pollInterval, ds_app))
+if params.enable_app_metrics then
+  pollers:add(DataSourcePoller:new(params.pollInterval, ds_app))
+end
 
 local plugin = Plugin:new(params, pollers)
 
