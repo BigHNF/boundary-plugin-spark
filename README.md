@@ -4,11 +4,11 @@ A Boundary Meter plugin that collects metrics from the Spark MetricsServlet sink
 
 ### Prerequisites
 
-#### Supported OS
-
 |     OS    | Linux | Windows | SmartOS | OS X |
 |:----------|:-----:|:-------:|:-------:|:----:|
 | Supported |   v   |    v    |    v    |  v   |
+
+This plugin is compatible with Docker 1.2.1 or later.
 
 #### Boundary Meter versions v4.2 or later
 
@@ -19,31 +19,33 @@ A Boundary Meter plugin that collects metrics from the Spark MetricsServlet sink
 
 #### MetricsServlet
 MetricsServlet is added by default as a sink in master, worker and client driver.
-See the conf/metrics.properties file on your Spark installation for more details.
+See the /etc/conf/metrics.properties file on your Spark installation for more details.
 
-#### *jvm source*
-You can also enable the *jvm source* for instance master, worker, driver and executor to get detailed metrics of the JVM.
+#### JMV Source
 
-The plugin gathers metrics from the master and a defined, running application. So you need to configure the host and port for the WebUI of the master and application process.
+You can also enable the *jvm source* for instance master, worker, driver and executor to get detailed metrics of the JVM uncommenting the following lines in your /etc/conf/metrics.properties
 
-#### WebUI Ports
-By default, the WebUI for the master runs on port 8080 and, for example, the WebUI for the shell application runs on 4040. These are the default values for this parameters. You can change them based on your configuration.
+The plugin gathers metrics from the Master and an optional running application. So you need to configure the host and port for the WebUI of the master and application process.
+
+#### WebUI Configuration
+
+By default, the WebUI for the master runs on port 18080 and, for applications the its on 4040 port. These are the default values for this parameters but you can change them based on your configuration.
 
 ### Plugin Configuration Fields
 
 |  Property   | UI Display Name | Description |
 |:-----------:|:---------------:|:-----------:|
-|host|Master Host|Host of the metrics on the Master WebUI|
-|port|Master Port|Port of the metrics on the Master WebUI|
-|path|Master Path|Path of the metrics on the Master WebUI|
-|app_host|Application Host|Host of the metrics on the Application WebUI|
-|app_port|Application Port|Port of the metrics on the Application WebUI|
-|app_path|Application Path|Path of the metrics on the Application WebUI|
-|pollInterval|Poll Time (ms)|The Poll Interval to call the command. Defaults 2000 milliseconds (2 seconds)|
-|source|Source|The source to display in the leged for this instance.|
+| Master Host | Host of the metrics endpoint on the Master WebUI|
+| Master Port | Port of the metrics endpoint on the Master WebUI|
+| Master Path | Path of the metrics endpoint on the Master WebUI|
+| Enable App. Metrics | Specify if metrics are enabled for the specified application. Defaults to false|
+| App. Host | Host of metrics endpoint on the Application WebUI|
+| App. Port | Port of metrics endpoint on the Application WebUI|
+| App. Path | Path of metrics endpoint on the Application WebUI|
+| Poll Time (ms) | The Poll Interval to call the command| 
+| Source | The source to display in the leged for this instance|
 
-### Metrics collected
-Tracks the following metrics for Spark.
+### Metrics Collected
 
 | Metric Name | Description | Context |
 |:------------|:------------|:--------|
@@ -57,7 +59,7 @@ Tracks the following metrics for Spark.
 | SPARK_MASTER_JVM_NONHEAP_MEMORY_COMMITTED | Non-heap memory committed by the JVM on the master. | Master |
 | SPARK_MASTER_JVM_NONHEAP_MEMORY_USED | Non-heap memory used by the JVM on the master. | Master |
 | SPARK_MASTER_JVM_NONHEAP_MEMORY_USAGE | Percentage of non-heap memory usage by the JVM on the master. | Master
-| SPARK_APP_JOBS_ACTIVE | Jobs running on the application | App (i.e. Shell) |
+| SPARK_APP_JOBS_ACTIVE | Jobs running on the application | App |
 | SPARK_APP_JOBS_ALL | All jobs created by the application. | App |
 | SPARK_APP_STAGES_FAILED | Failed stages for the application. | App |
 | SPARK_APP_STAGES_RUNNING | Running stages for the application. | App |
@@ -76,9 +78,10 @@ Tracks the following metrics for Spark.
 
 ### Dashboards
 
-- Spark Master Overview
-- Spark Application Overview
+- Spark Master
+- Spark Application
 
 ### References
 
-http://spark.apache.org/docs/1.2.0/monitoring.html
+http://spark.apache.org/docs/1.2.1/monitoring.html
+
