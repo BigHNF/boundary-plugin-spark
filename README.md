@@ -33,8 +33,8 @@ By default, the WebUI for the master runs on port 18080 and, for applications th
 
 ### Plugin Configuration Fields
 
-|  Property   | UI Display Name | Description |
-|:-----------:|:---------------:|:-----------:|
+|  Property   | Description |
+|:-----------:|:---------------|
 | Master Host | Host of the metrics endpoint on the Master WebUI|
 | Master Port | Port of the metrics endpoint on the Master WebUI|
 | Master Path | Path of the metrics endpoint on the Master WebUI|
@@ -42,7 +42,7 @@ By default, the WebUI for the master runs on port 18080 and, for applications th
 | App. Host | Host of metrics endpoint on the Application WebUI|
 | App. Port | Port of metrics endpoint on the Application WebUI|
 | App. Path | Path of metrics endpoint on the Application WebUI|
-| Poll Time (ms) | The Poll Interval to call the command| 
+| Poll Time (ms) | How often to poll for metrics in milliseconds | 
 | Source | The source to display in the leged for this instance|
 
 ### Metrics Collected
