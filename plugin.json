@@ -95,6 +95,13 @@
       "description" : "The Source to display in the legend for the spark data. It will default to the hostname of the server",
       "type" : "string",
       "required" : false
+    },
+    {
+      "title": "Debug Level",
+      "name": "debug_level",
+      "description": "If you are having issues with the plugin, you can enable additional debugging output to be shown in the relay console",
+      "type": { "enum" : [["CRITICAL", "critical"], ["ERROR", "error"], ["WARNING", "warning"], ["INFO", "info"], ["DEBUG", "debug"], ["NOTSET", "notset"]] },
+      "default": "notset",
+      "required" : true
     }
-  ]
 }

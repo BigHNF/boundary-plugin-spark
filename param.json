@@ -4,7 +4,8 @@
 	  "host": "127.0.0.1",
 	  "port": 18080,
 	  "instance_type": "master",
-	  "pollInterval":1000
+	  "pollInterval":1000,
+          "debug_level": "info"
 	},
 	{
 	  "host": "127.0.0.1",
