@@ -35,15 +35,12 @@ By default, the WebUI for the master runs on port 18080 and, for applications th
 
 |  Property   | Description |
 |:-----------:|:---------------|
-| Master Host | Host of the metrics endpoint on the Master WebUI|
-| Master Port | Port of the metrics endpoint on the Master WebUI|
-| Master Path | Path of the metrics endpoint on the Master WebUI|
-| Enable App. Metrics | Specify if metrics are enabled for the specified application. Defaults to false|
-| App. Host | Host of metrics endpoint on the Application WebUI|
-| App. Port | Port of metrics endpoint on the Application WebUI|
-| App. Path | Path of metrics endpoint on the Application WebUI|
+| Host | Host of the metrics endpoint on the WebUI for Master or Application. |
+| Port | Port of the metrics endpoint on the WebUI for Master or Application. |
+| Instance Type | Type of the instance to monitor. It can be Application or Master.| 
 | Poll Time (ms) | How often to poll for metrics in milliseconds | 
 | Source | The source to display in the leged for this instance|
+| Debug Level | If enabled it will show additional debug output in the Plugin Console. |
 
 ### Metrics Collected
 
