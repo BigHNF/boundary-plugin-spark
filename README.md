@@ -8,7 +8,7 @@ A Boundary Meter plugin that collects metrics from the Spark MetricsServlet sink
 |:----------|:-----:|:-------:|:-------:|:----:|
 | Supported |   v   |    v    |    v    |  v   |
 
-This plugin is compatible with Docker 1.2.1 or later.
+This plugin is compatible with Spark 1.2.1 or later.
 
 #### Boundary Meter versions v4.2 or later
 

@@ -1,10 +1,17 @@
 {
-	"pollInterval":1000,
-	"host": "localhost",
-	"port":18080,
-	"enable_app_metrics": false,
-	"path": "/metrics/master/json/",
-	"app_host": "localhost",
-	"app_port":4040,
-	"app_path": "/metrics/json/"
+	"items": [
+	{
+	  "host": "127.0.0.1",
+	  "port": 18080,
+	  "instance_type": "master",
+	  "pollInterval":1000
+	},
+	{
+	  "host": "127.0.0.1",
+	  "port": 4040,
+	  "instance_type": "app",
+	  "pollInterval":1000
+	}
+	],
+	"pollInterval" : 1000
 }
