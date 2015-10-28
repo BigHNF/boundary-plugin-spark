@@ -1,10 +1,10 @@
 {
-  "name" : "Boundary Apache Spark Plugin",
+  "name" : "TrueSight Pulse Spark Plugin",
   "version" : "0.9.1",
   "meterVersionRequired" : "4.2.0-611",
   "unsupportedPlatforms" : [ ],
   "tags" : "apache-spark",
-  "description": "Gathers information from the Spark Master host about the entire Spark environment.",
+  "description": "Monitors Spark Master and Applications.",
   "icon" : "icon.png",
   "command": "boundary-meter init.lua",
   "command_lua": "boundary-meter init.lua",
@@ -43,7 +43,7 @@
   "dashboards": [
     {
       "name":"Spark Master",
-      "layout": "d-w=3&d-h=3&d-pad=5&d-bg=none&d-g-SPARK_MASTER_APPLICATIONS_RUNNING_COUNT=0-0-1-1-t&d-g-SPARK_MASTER_APPLICATIONS_WAITING_COUNT=0-0-1-1-b&d-g-SPARK_MASTER_JVM_HEAP_MEMORY_COMMITTED=0-1-1-1-t&d-g-SPARK_MASTER_JVM_HEAP_MEMORY_USED=0-1-1-1-b&d-g-SPARK_MASTER_JVM_HEAP_MEMORY_USAGE=0-2-1-1&d-g-SPARK_MASTER_JVM_MEMORY_COMMITTED=1-1-1-1-t&d-g-SPARK_MASTER_JVM_MEMORY_USED=1-1-1-1-b&d-g-SPARK_MASTER_JVM_NONHEAP_MEMORY_COMMITTED=2-1-1-1-t&d-g-SPARK_MASTER_JVM_NONHEAP_MEMORY_USED=2-1-1-1-b&d-g-SPARK_MASTER_JVM_NONHEAP_MEMORY_USAGE=2-2-1-1&d-g-SPARK_MASTER_WORKERS_COUNT=1-0-1-1"
+      "layout": "d-w=3&d-h=3&d-pad=5&d-light=0&d-bg=none&d-g-SPARK_MASTER_APPLICATIONS_RUNNING_COUNT=0-0-1-1-t&d-g-SPARK_MASTER_APPLICATIONS_WAITING_COUNT=0-0-1-1-b&d-g-SPARK_MASTER_WORKERS_COUNT=1-0-1-1&d-g-SPARK_MASTER_JVM_MEMORY_USED=0-1-1-1&d-g-SPARK_MASTER_JVM_MEMORY_COMMITTED=0-2-1-1&d-g-SPARK_MASTER_JVM_HEAP_MEMORY_USED=1-1-1-1&d-g-SPARK_MASTER_JVM_HEAP_MEMORY_COMMITTED=1-2-1-1&d-g-SPARK_MASTER_JVM_NONHEAP_MEMORY_USED=2-1-1-1&d-g-SPARK_MASTER_JVM_NONHEAP_MEMORY_COMMITTED=2-2-1-1&d-g-SPARK_MASTER_JVM_HEAP_MEMORY_USAGE=2-0-1-1-t&d-g-SPARK_MASTER_JVM_NONHEAP_MEMORY_USAGE=2-0-1-1-b"
     },
     {
       "name":"Spark Application",
@@ -87,14 +87,14 @@
       "description": "The Poll Interval (in milliseconds) to poll for metrics.",
       "type": "integer",
       "default": 1000,
-      "required": false
+      "required": true
     },
     {
       "title" : "Source",
       "name" : "source",
       "description" : "The Source to display in the legend for the spark data. It will default to the hostname of the server",
       "type" : "string",
-      "required" : false
+      "required" : true
     },
     {
       "title": "Debug Level",
