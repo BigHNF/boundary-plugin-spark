@@ -1,10 +1,10 @@
 {
-  "name" : "Boundary Apache Spark Plugin",
+  "name" : "TrueSight Pulse Spark Plugin",
   "version" : "0.9.1",
   "meterVersionRequired" : "4.2.0-611",
   "unsupportedPlatforms" : [ ],
   "tags" : "apache-spark",
-  "description": "Gathers information from the Spark Master host about the entire Spark environment.",
+  "description": "Monitors Spark Master and Applications.",
   "icon" : "icon.png",
   "command": "boundary-meter init.lua",
   "command_lua": "boundary-meter init.lua",
@@ -87,14 +87,14 @@
       "description": "The Poll Interval (in milliseconds) to poll for metrics.",
       "type": "integer",
       "default": 1000,
-      "required": false
+      "required": true
     },
     {
       "title" : "Source",
       "name" : "source",
       "description" : "The Source to display in the legend for the spark data. It will default to the hostname of the server",
       "type" : "string",
-      "required" : false
+      "required" : true
     },
     {
       "title": "Debug Level",
