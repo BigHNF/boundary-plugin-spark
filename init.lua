@@ -20,34 +20,42 @@ local PollerCollection = framework.PollerCollection
 local DataSourcePoller = framework.DataSourcePoller
 local megaBytesToBytes = framework.util.megaBytesToBytes
 local isHttpSuccess = framework.util.isHttpSuccess
+local parseJson = framework.util.parseJson
 framework.functional()
 framework.table()
 framework.string()
 
 local params = framework.boundary.param
-params.meta = 'master'
-params.pollInterval = notEmpty(params.pollInterval, 2000)
-local ds_master = WebRequestDataSource:new(params)
 
--- Params for App
-local appParams = clone(params)
-appParams.host = params.app_host
-appParams.port = params.app_port
-appParams.path = params.app_path
-appParams.meta = 'app'
-local ds_app = WebRequestDataSource:new(appParams)  
+local function createDataSource(item)
+  item.path = item.instance_type == 'master' and '/metrics/master/json/' or '/metrics/json/'
+  item.meta = item.instance_type
+  local ds = WebRequestDataSource:new(item)
+  return ds
+end
 
-local pollers = PollerCollection:new()
-pollers:add(DataSourcePoller:new(params.pollInterval, ds_master))
-pollers:add(DataSourcePoller:new(params.pollInterval, ds_app))
+local function poller(item)
+  local ds = createDataSource(item)
+  return DataSourcePoller:new(item.pollInterval, ds)
+end
 
-local plugin = Plugin:new(params, pollers)
+local function createPollers(items)
+  p(items)
+  local pollers = PollerCollection:new()
+  for _, i in ipairs(items) do
+    pollers:add(poller(i))
+  end
+  return pollers
+end
 
 local function getFuzzy(fuzzyKey, map)
   local predicate = partial(contains, escape(fuzzyKey))
   local k = filter(predicate, keys(map))[1]
   return get(k, map)
 end
+
+local pollers = createPollers(params.items)
+local plugin = Plugin:new(params, pollers)
 
 local getValue = partial(get, 'value')
 local getFuzzyValue = compose(getFuzzy, getValue)
@@ -58,7 +66,7 @@ function plugin:onParseValues(data, extra)
     self:emitEvent('error', ('Http Response status code %d instead of OK. Verify your Spark endpoint configuration.'):format(extra.status_code))
     return
   end
-  local success, parsed = pcall(json.parse, data) 
+  local success, parsed = parseJson(data) 
   if not success then
     self:emitEvent('error', 'Can not parse metrics. Verify your Spark endpoint configuration.') 
     return

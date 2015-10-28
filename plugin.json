@@ -42,62 +42,43 @@
 
   "dashboards": [
     {
-      "name":"Spark Master Overview",
+      "name":"Spark Master",
       "layout": "d-w=3&d-h=3&d-pad=5&d-bg=none&d-g-SPARK_MASTER_APPLICATIONS_RUNNING_COUNT=0-0-1-1-t&d-g-SPARK_MASTER_APPLICATIONS_WAITING_COUNT=0-0-1-1-b&d-g-SPARK_MASTER_JVM_HEAP_MEMORY_COMMITTED=0-1-1-1-t&d-g-SPARK_MASTER_JVM_HEAP_MEMORY_USED=0-1-1-1-b&d-g-SPARK_MASTER_JVM_HEAP_MEMORY_USAGE=0-2-1-1&d-g-SPARK_MASTER_JVM_MEMORY_COMMITTED=1-1-1-1-t&d-g-SPARK_MASTER_JVM_MEMORY_USED=1-1-1-1-b&d-g-SPARK_MASTER_JVM_NONHEAP_MEMORY_COMMITTED=2-1-1-1-t&d-g-SPARK_MASTER_JVM_NONHEAP_MEMORY_USED=2-1-1-1-b&d-g-SPARK_MASTER_JVM_NONHEAP_MEMORY_USAGE=2-2-1-1&d-g-SPARK_MASTER_WORKERS_COUNT=1-0-1-1"
     },
     {
-      "name":"Spark Application Overview",
+      "name":"Spark Application",
       "layout": "d-w=4&d-h=3&d-pad=5&d-bg=none&d-g-SPARK_APP_JVM_HEAP_MEMORY_USAGE=1-2-1-1&d-g-SPARK_APP_JVM_HEAP_MEMORY_COMMITTED=1-1-1-1-t&d-g-SPARK_APP_JVM_HEAP_MEMORY_USED=1-1-1-1-b&d-g-SPARK_APP_JVM_MEMORY_COMMITTED=2-1-1-1-t&d-g-SPARK_APP_JVM_MEMORY_USED=2-1-1-1-b&d-g-SPARK_APP_BLKMGR_MEMORY_USED=2-0-1-1&d-g-SPARK_APP_JVM_NOHEAP_MEMORY_COMMITTED=3-1-1-1-t&d-g-SPARK_APP_JVM_NONHEAP_MEMORY_USED=3-1-1-1-b&d-g-SPARK_APP_JVM_NONHEAP_MEMORY_USAGE=3-2-1-1&d-g-SPARK_APP_BLKMGR_MEMORY_FREE=2-2-1-1&d-g-SPARK_APP_STAGES_FAILED=0-2-1-1&d-g-SPARK_APP_STAGES_RUNNING=1-0-1-1-t&d-g-SPARK_APP_STAGES_WAITING=1-0-1-1-b&d-g-SPARK_APP_BLKMGR_DISK_SPACE_USED=3-0-1-1&d-g-SPARK_APP_JOBS_ALL=0-1-1-1-t&d-g-SPARK_APP_JOBS_ACTIVE=0-1-1-1-b&d-g-SPARK_MASTER_APPLICATIONS_RUNNING_COUNT=0-0-1-1-t&d-g-SPARK_MASTER_APPLICATIONS_WAITING_COUNT=0-0-1-1-b"
     }
   ],
-
+  "paramArray" : {
+    "itemTitle": [
+      "host", "port", "source"
+    ],
+    "schemaTitle": "Instance"
+  },
   "paramSchema": [
     {
-      "title": "Master Host",
+      "title": "Host",
       "name": "host",
-      "description": "Host of the Master WebUI",
+      "description": "Host of the WebUI for the instance.",
       "type": "string",
       "default": "127.0.0.1",
       "required": true
     },
     {
-      "title": "Master port",
+      "title": "Port",
       "name": "port",
-      "description": "Port of the Master WebUI",
+      "description": "Port of the WebUI for the instance. For Master usually is 18080 and for Applications usually is 4040",
       "type": "integer",
-      "default": 8080,
+      "default": 18080,
       "required": true
     },
     {
-      "title": "Master path",
-      "name": "path",
-      "description": "Path of the metrics on the Master WebUI",
-      "type": "string",
-      "default": "/metrics/master/json/",
-      "required": true
-    },
-    {
-      "title": "Application Host",
-      "name": "app_host",
-      "description": "Host of the Application WebUI",
-      "type": "string",
-      "default": "127.0.0.1",
-      "required": true
-    },
-    {
-      "title": "Application port",
-      "name": "app_port",
-      "description": "Port of the Application WebUI",
-      "type": "integer",
-      "default": 4040,
-      "required": true
-    },
-    {
-      "title": "Application path",
-      "name": "app_path",
-      "description": "Path of the metrics on the Application WebUI",
-      "type": "string",
-      "default": "/metrics/json/",
+      "title": "Instance Type",
+      "name": "instance_type",
+      "description": "The type for this instance.",
+      "type": { "enum" : [["Master", "master"], ["Application", "app"]]},
+      "default": "master",
       "required": true
     },
     {
@@ -105,7 +86,7 @@
       "name": "pollInterval",
       "description": "The Poll Interval (in milliseconds) to poll for metrics.",
       "type": "integer",
-      "default": 2000,
+      "default": 1000,
       "required": false
     },
     {
@@ -114,6 +95,14 @@
       "description" : "The Source to display in the legend for the spark data. It will default to the hostname of the server",
       "type" : "string",
       "required" : false
+    },
+    {
+      "title": "Debug Level",
+      "name": "debug_level",
+      "description": "If you are having issues with the plugin, you can enable additional debugging output to be shown in the relay console",
+      "type": { "enum" : [["CRITICAL", "critical"], ["ERROR", "error"], ["WARNING", "warning"], ["INFO", "info"], ["DEBUG", "debug"], ["NOTSET", "notset"]] },
+      "default": "notset",
+      "required" : true
     }
   ]
 }
