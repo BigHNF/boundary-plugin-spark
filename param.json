@@ -5,13 +5,8 @@
 	  "port": 18080,
 	  "instance_type": "master",
 	  "pollInterval":1000,
-          "debug_level": "info"
-	},
-	{
-	  "host": "127.0.0.1",
-	  "port": 4040,
-	  "instance_type": "app",
-	  "pollInterval":1000
+          "debug_level": "notset",
+	  "source" : "spark-dev"
 	}
 	],
 	"pollInterval" : 1000
