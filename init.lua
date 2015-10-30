@@ -40,7 +40,6 @@ local function poller(item)
 end
 
 local function createPollers(items)
-  p(items)
   local pollers = PollerCollection:new()
   for _, i in ipairs(items) do
     pollers:add(poller(i))
@@ -73,17 +72,17 @@ function plugin:onParseValues(data, extra)
   end
   local result = {}
   if extra.info == 'master' then
-    result['SPARK_MASTER_WORKERS_COUNT'] = tonumber(parsed.gauges['master.workers'].value)
-    result['SPARK_MASTER_APPLICATIONS_RUNNING_COUNT'] = tonumber(parsed.gauges['master.apps'].value)
-    result['SPARK_MASTER_APPLICATIONS_WAITING_COUNT'] = tonumber(parsed.gauges['master.waitingApps'].value)
-    result['SPARK_MASTER_JVM_MEMORY_USED'] = tonumber(parsed.gauges['jvm.total.used'].value)
-    result['SPARK_MASTER_JVM_MEMORY_COMMITTED'] = tonumber(parsed.gauges['jvm.total.committed'].value)
-    result['SPARK_MASTER_JVM_HEAP_MEMORY_COMMITTED'] = tonumber(parsed.gauges['jvm.heap.committed'].value)
-    result['SPARK_MASTER_JVM_HEAP_MEMORY_USED'] = tonumber(parsed.gauges['jvm.heap.used'].value)
-    result['SPARK_MASTER_JVM_HEAP_MEMORY_USAGE'] = tonumber(parsed.gauges['jvm.heap.usage'].value)
-    result['SPARK_MASTER_JVM_NONHEAP_MEMORY_COMMITTED'] = tonumber(parsed.gauges['jvm.non-heap.committed'].value)
-    result['SPARK_MASTER_JVM_NONHEAP_MEMORY_USED'] = tonumber(parsed.gauges['jvm.non-heap.used'].value)
-    result['SPARK_MASTER_JVM_NONHEAP_MEMORY_USAGE'] = tonumber(parsed.gauges['jvm.non-heap.usage'].value)
+    result['SPARK_MASTER_WORKERS_COUNT'] = getValue(parsed.gauges['master.workers'])
+    result['SPARK_MASTER_APPLICATIONS_RUNNING_COUNT'] = getValue(parsed.gauges['master.apps'])
+    result['SPARK_MASTER_APPLICATIONS_WAITING_COUNT'] = getValue(parsed.gauges['master.waitingApps'])
+    result['SPARK_MASTER_JVM_MEMORY_USED'] = getValue(parsed.gauges['jvm.total.used'])
+    result['SPARK_MASTER_JVM_MEMORY_COMMITTED'] = getValue(parsed.gauges['jvm.total.committed'])
+    result['SPARK_MASTER_JVM_HEAP_MEMORY_COMMITTED'] = getValue(parsed.gauges['jvm.heap.committed'])
+    result['SPARK_MASTER_JVM_HEAP_MEMORY_USED'] = getValue(parsed.gauges['jvm.heap.used'])
+    result['SPARK_MASTER_JVM_HEAP_MEMORY_USAGE'] = getValue(parsed.gauges['jvm.heap.usage'])
+    result['SPARK_MASTER_JVM_NONHEAP_MEMORY_COMMITTED'] = getValue(parsed.gauges['jvm.non-heap.committed'])
+    result['SPARK_MASTER_JVM_NONHEAP_MEMORY_USED'] = getValue(parsed.gauges['jvm.non-heap.used'])
+    result['SPARK_MASTER_JVM_NONHEAP_MEMORY_USAGE'] = getValue(parsed.gauges['jvm.non-heap.usage'])
   elseif extra.info == 'app' then
     parsed = get('gauges', parsed)
     result['SPARK_APP_JOBS_ACTIVE'] = getFuzzyValue('job.activeJobs', parsed) 
