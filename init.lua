@@ -21,6 +21,7 @@ local DataSourcePoller = framework.DataSourcePoller
 local megaBytesToBytes = framework.util.megaBytesToBytes
 local isHttpSuccess = framework.util.isHttpSuccess
 local parseJson = framework.util.parseJson
+local ipack = framework.util.ipack
 framework.functional()
 framework.table()
 framework.string()
@@ -29,7 +30,7 @@ local params = framework.boundary.param
 
 local function createDataSource(item)
   item.path = item.instance_type == 'master' and '/metrics/master/json/' or '/metrics/json/'
-  item.meta = item.instance_type
+  item.meta = { instance_type = item.instance_type, source = item.source }
   local ds = WebRequestDataSource:new(item)
   return ds
 end
@@ -71,36 +72,41 @@ function plugin:onParseValues(data, extra)
     return
   end
   local result = {}
-  if extra.info == 'master' then
-    result['SPARK_MASTER_WORKERS_COUNT'] = getValue(parsed.gauges['master.workers'])
-    result['SPARK_MASTER_APPLICATIONS_RUNNING_COUNT'] = getValue(parsed.gauges['master.apps'])
-    result['SPARK_MASTER_APPLICATIONS_WAITING_COUNT'] = getValue(parsed.gauges['master.waitingApps'])
-    result['SPARK_MASTER_JVM_MEMORY_USED'] = getValue(parsed.gauges['jvm.total.used'])
-    result['SPARK_MASTER_JVM_MEMORY_COMMITTED'] = getValue(parsed.gauges['jvm.total.committed'])
-    result['SPARK_MASTER_JVM_HEAP_MEMORY_COMMITTED'] = getValue(parsed.gauges['jvm.heap.committed'])
-    result['SPARK_MASTER_JVM_HEAP_MEMORY_USED'] = getValue(parsed.gauges['jvm.heap.used'])
-    result['SPARK_MASTER_JVM_HEAP_MEMORY_USAGE'] = getValue(parsed.gauges['jvm.heap.usage'])
-    result['SPARK_MASTER_JVM_NONHEAP_MEMORY_COMMITTED'] = getValue(parsed.gauges['jvm.non-heap.committed'])
-    result['SPARK_MASTER_JVM_NONHEAP_MEMORY_USED'] = getValue(parsed.gauges['jvm.non-heap.used'])
-    result['SPARK_MASTER_JVM_NONHEAP_MEMORY_USAGE'] = getValue(parsed.gauges['jvm.non-heap.usage'])
-  elseif extra.info == 'app' then
+  local source = extra.info.source
+  local metric = function (...)
+    ipack(result, ...)
+  end
+  local instance_type = extra.info.instance_type 
+  if instance_type == 'master' then
+    metric('SPARK_MASTER_WORKERS_COUNT', getValue(parsed.gauges['master.workers']), nil, source)
+    metric('SPARK_MASTER_APPLICATIONS_RUNNING_COUNT', getValue(parsed.gauges['master.apps']), nil, source)
+    metric('SPARK_MASTER_APPLICATIONS_WAITING_COUNT', getValue(parsed.gauges['master.waitingApps']), nil, source)
+    metric('SPARK_MASTER_JVM_MEMORY_USED', getValue(parsed.gauges['jvm.total.used']), nil, source)
+    metric('SPARK_MASTER_JVM_MEMORY_COMMITTED', getValue(parsed.gauges['jvm.total.committed']), nil, source)
+    metric('SPARK_MASTER_JVM_HEAP_MEMORY_COMMITTED', getValue(parsed.gauges['jvm.heap.committed']), nil, source)
+    metric('SPARK_MASTER_JVM_HEAP_MEMORY_USED', getValue(parsed.gauges['jvm.heap.used']), nil, source)
+    metric('SPARK_MASTER_JVM_HEAP_MEMORY_USAGE', getValue(parsed.gauges['jvm.heap.usage']), nil, source)
+    metric('SPARK_MASTER_JVM_NONHEAP_MEMORY_COMMITTED', getValue(parsed.gauges['jvm.non-heap.committed']), nil, source)
+    metric('SPARK_MASTER_JVM_NONHEAP_MEMORY_USED', getValue(parsed.gauges['jvm.non-heap.used']), nil, source)
+    metric('SPARK_MASTER_JVM_NONHEAP_MEMORY_USAGE', getValue(parsed.gauges['jvm.non-heap.usage']), nil, source)
+  elseif instance_type == 'app' then
     parsed = get('gauges', parsed)
-    result['SPARK_APP_JOBS_ACTIVE'] = getFuzzyValue('job.activeJobs', parsed) 
-    result['SPARK_APP_JOBS_ALL'] = getFuzzyValue('job.allJobs', parsed)
-    result['SPARK_APP_STAGES_FAILED'] = getFuzzyValue('stage.failedStages', parsed)
-    result['SPARK_APP_STAGES_RUNNING'] = getFuzzyValue('stage.runningStages', parsed)
-    result['SPARK_APP_STAGES_WAITING'] = getFuzzyValue('stage.waitingStages', parsed)
-    result['SPARK_APP_BLKMGR_DISK_SPACE_USED'] = megaBytesToBytes(getFuzzyNumber('BlockManager.disk.diskSpaceUsed_MB', parsed))
-    result['SPARK_APP_BLKMGR_MEMORY_USED'] = megaBytesToBytes(getFuzzyNumber('BlockManager.memory.memUsed_MB', parsed))
-    result['SPARK_APP_BLKMGR_MEMORY_FREE'] = megaBytesToBytes(getFuzzyNumber('BlockManager.memory.remainingMem_MB', parsed))
-    result['SPARK_APP_JVM_MEMORY_COMMITTED'] = getFuzzyNumber('jvm.total.committed', parsed)
-    result['SPARK_APP_JVM_MEMORY_USED'] = getFuzzyNumber('jvm.total.used', parsed)
-    result['SPARK_APP_JVM_HEAP_MEMORY_COMMITTED'] = getFuzzyNumber('jvm.heap.committed', parsed)
-    result['SPARK_APP_JVM_HEAP_MEMORY_USED'] = getFuzzyNumber('jvm.heap.used', parsed)
-    result['SPARK_APP_JVM_HEAP_MEMORY_USAGE'] = getFuzzyNumber('jvm.heap.usage', parsed)
-    result['SPARK_APP_JVM_NONHEAP_MEMORY_COMMITTED'] = getFuzzyNumber('jvm.non-heap.committed', parsed)
-    result['SPARK_APP_JVM_NONHEAP_MEMORY_USED'] = getFuzzyNumber('jvm.non-heap.used', parsed)
-    result['SPARK_APP_JVM_NONHEAP_MEMORY_USAGE'] = getFuzzyNumber('jvm.non-heap.usage', parsed)
+    metric('SPARK_APP_JOBS_ACTIVE', getFuzzyValue('job.activeJobs', parsed), nil, source)
+    metric('SPARK_APP_JOBS_ALL', getFuzzyValue('job.allJobs', parsed), nil, source)
+    metric('SPARK_APP_STAGES_FAILED', getFuzzyValue('stage.failedStages', parsed), nil, source)
+    metric('SPARK_APP_STAGES_RUNNING', getFuzzyValue('stage.runningStages', parsed), nil, source)
+    metric('SPARK_APP_STAGES_WAITING', getFuzzyValue('stage.waitingStages', parsed), nil, source)
+    metric('SPARK_APP_BLKMGR_DISK_SPACE_USED', megaBytesToBytes(getFuzzyNumber('BlockManager.disk.diskSpaceUsed_MB', parsed)), nil, source)
+    metric('SPARK_APP_BLKMGR_MEMORY_USED', megaBytesToBytes(getFuzzyNumber('BlockManager.memory.memUsed_MB', parsed)), nil, source)
+    metric('SPARK_APP_BLKMGR_MEMORY_FREE', megaBytesToBytes(getFuzzyNumber('BlockManager.memory.remainingMem_MB', parsed)), nil, source)
+    metric('SPARK_APP_JVM_MEMORY_COMMITTED', getFuzzyNumber('jvm.total.committed', parsed), nil, source)
+    metric('SPARK_APP_JVM_MEMORY_USED', getFuzzyNumber('jvm.total.used', parsed), nil, source)
+    metric('SPARK_APP_JVM_HEAP_MEMORY_COMMITTED', getFuzzyNumber('jvm.heap.committed', parsed), nil, source)
+    metric('SPARK_APP_JVM_HEAP_MEMORY_USED', getFuzzyNumber('jvm.heap.used', parsed), nil, source)
+    metric('SPARK_APP_JVM_HEAP_MEMORY_USAGE', getFuzzyNumber('jvm.heap.usage', parsed), nil, source)
+    metric('SPARK_APP_JVM_NONHEAP_MEMORY_COMMITTED', getFuzzyNumber('jvm.non-heap.committed', parsed), nil, source)
+    metric('SPARK_APP_JVM_NONHEAP_MEMORY_USED', getFuzzyNumber('jvm.non-heap.used', parsed), nil, source)
+    metric('SPARK_APP_JVM_NONHEAP_MEMORY_USAGE', getFuzzyNumber('jvm.non-heap.usage', parsed), nil, source)
   end
   return result
 end
