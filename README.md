@@ -6,7 +6,7 @@ A Boundary Meter plugin that collects metrics from the Spark MetricsServlet sink
 
 |     OS    | Linux | Windows | SmartOS | OS X |
 |:----------|:-----:|:-------:|:-------:|:----:|
-| Supported |   v   |    v    |    v    |  v   |
+| Supported |   v   |    -    |    -    |  -   |
 
 This plugin is compatible with Spark 1.2.1 or later.
 
@@ -39,7 +39,7 @@ By default, the WebUI for the master runs on port 18080 and, for applications th
 | Port | Port of the metrics endpoint on the WebUI for Master or Application. |
 | Instance Type | Type of the instance to monitor. It can be Application or Master.| 
 | Poll Time (ms) | How often to poll for metrics in milliseconds | 
-| Source | The source to display in the leged for this instance|
+| Source | The source to display in the legend for this instance|
 | Debug Level | If enabled it will show additional debug output in the Plugin Console. |
 
 ### Metrics Collected
