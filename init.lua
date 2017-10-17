@@ -78,9 +78,20 @@ function plugin:onParseValues(data, extra)
   end
   local instance_type = extra.info.instance_type 
   if instance_type == 'master' then
+    metric('SPARK_MASTER_ALIVE_WORKERS_COUNT', getValue(parsed.gauges['master.aliveWorkers']), nil, source)
     metric('SPARK_MASTER_WORKERS_COUNT', getValue(parsed.gauges['master.workers']), nil, source)
-    metric('SPARK_MASTER_APPLICATIONS_RUNNING_COUNT', getValue(parsed.gauges['master.apps']), nil, source)
-    metric('SPARK_MASTER_APPLICATIONS_WAITING_COUNT', getValue(parsed.gauges['master.waitingApps']), nil, source)
+
+    local runningApps = getValue(parsed.gauges['master.apps'])
+    local waitingApps = getValue(parsed.gauges['master.waitingApps'])
+    metric('SPARK_MASTER_APPLICATIONS_RUNNING_COUNT', runningApps, nil, source)
+    metric('SPARK_MASTER_APPLICATIONS_WAITING_COUNT', waitingApps, nil, source)
+    
+    if(runningApps == 0 and waitingApps > 0) then
+	metric('SPARK_MASTER_NO_APPLICATIONS_RUNNING', 1, nil, source)
+    else
+	metric('SPARK_MASTER_NO_APPLICATIONS_RUNNING', 0, nil, source)
+    end
+	
     metric('SPARK_MASTER_JVM_MEMORY_USED', getValue(parsed.gauges['jvm.total.used']), nil, source)
     metric('SPARK_MASTER_JVM_MEMORY_COMMITTED', getValue(parsed.gauges['jvm.total.committed']), nil, source)
     metric('SPARK_MASTER_JVM_HEAP_MEMORY_COMMITTED', getValue(parsed.gauges['jvm.heap.committed']), nil, source)
@@ -89,6 +100,7 @@ function plugin:onParseValues(data, extra)
     metric('SPARK_MASTER_JVM_NONHEAP_MEMORY_COMMITTED', getValue(parsed.gauges['jvm.non-heap.committed']), nil, source)
     metric('SPARK_MASTER_JVM_NONHEAP_MEMORY_USED', getValue(parsed.gauges['jvm.non-heap.used']), nil, source)
     metric('SPARK_MASTER_JVM_NONHEAP_MEMORY_USAGE', getValue(parsed.gauges['jvm.non-heap.usage']), nil, source)
+    
   elseif instance_type == 'app' then
     parsed = get('gauges', parsed)
     metric('SPARK_APP_JOBS_ACTIVE', getFuzzyValue('job.activeJobs', parsed), nil, source)

@@ -241,5 +241,23 @@
     "displayNameShort": "Spark Mstr Workers",
     "isDisabled": 0,
     "unit": "number"
+  },
+  "SPARK_MASTER_ALIVE_WORKERS_COUNT": {
+    "defaultAggregate": "avg",
+    "defaultResolutionMS": 1000,
+    "description": "The number of alive active workers on the master.",
+    "displayName": "Spark Master alive Workers",
+    "displayNameShort": "Spark Mstr alv Work",
+    "isDisabled": 0,
+    "unit": "number"
+  },
+  "SPARK_MASTER_NO_APPLICATIONS_RUNNING": {
+    "defaultAggregate": "max",
+    "defaultResolutionMS": 1000,
+    "description": "1 if none of the apps are running and apps are waiting to run - else 0",
+    "displayName": "Spark Apps waiting - none running",
+    "displayNameShort": "Spark Apps Not Run",
+    "isDisabled": 0,
+    "unit": "number"
   }
 }
