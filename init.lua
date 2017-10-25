@@ -28,22 +28,44 @@ framework.string()
 
 local params = framework.boundary.param
 
-local function createDataSource(item)
-  item.path = item.instance_type == 'master' and '/metrics/master/json/' or '/metrics/json/'
-  item.meta = { instance_type = item.instance_type, source = item.source }
-  local ds = WebRequestDataSource:new(item)
-  return ds
+local function createOptions(config)
+  local options = {}
+  options.host = config.host
+  options.port = config.port
+  options.path = ''
+  return options 
 end
 
-local function poller(item)
-  local ds = createDataSource(item)
-  return DataSourcePoller:new(item.pollInterval, ds)
+local function addPollers(item, pollers)
+  if(item.instance_type == 'master') then  	
+  	--Datasource to poll all the master details.
+	local options = createOptions(item)
+	options.path = '/metrics/master/json/'
+  	options.meta = { instance_type = 'master', source = item.source }
+  	local ds1 = WebRequestDataSource:new(options)  	
+    	pollers:add(DataSourcePoller:new(item.pollInterval, ds1))
+
+	--Datasource to poll active drivers
+	local options1 = createOptions(item)
+	options1.path = '/metrics/master/json/'
+    	options1.meta = { instance_type = 'drivers', source = item.source }
+    	local ds2 = WebRequestDataSource:new(options1)
+    	pollers:add(DataSourcePoller:new(item.pollInterval, ds2))
+		
+  else
+  	--Datasource to poll all the worker application details.
+	item.path = '/metrics/json/'
+	item.meta = { instance_type = 'app', source = item.source }
+  	local ds3 = WebRequestDataSource:new(item)
+  	pollers:add(DataSourcePoller:new(item.pollInterval, ds3))
+  end
+  
 end
 
 local function createPollers(items)
   local pollers = PollerCollection:new()
-  for _, i in ipairs(items) do
-    pollers:add(poller(i))
+  for _, item in ipairs(items) do
+    addPollers(item, pollers)
   end
   return pollers
 end
@@ -66,17 +88,19 @@ function plugin:onParseValues(data, extra)
     self:emitEvent('error', ('Http Response status code %d instead of OK. Verify your Spark endpoint configuration.'):format(extra.status_code))
     return
   end
+
   local success, parsed = parseJson(data) 
   if not success then
     self:emitEvent('error', 'Can not parse metrics. Verify your Spark endpoint configuration.') 
     return
   end
+
   local result = {}
   local source = extra.info.source
   local metric = function (...)
     ipack(result, ...)
   end
-  local instance_type = extra.info.instance_type 
+  local instance_type = extra.info.instance_type
   if instance_type == 'master' then
     metric('SPARK_MASTER_ALIVE_WORKERS_COUNT', getValue(parsed.gauges['master.aliveWorkers']), nil, source)
     metric('SPARK_MASTER_WORKERS_COUNT', getValue(parsed.gauges['master.workers']), nil, source)
@@ -100,6 +124,18 @@ function plugin:onParseValues(data, extra)
     metric('SPARK_MASTER_JVM_NONHEAP_MEMORY_COMMITTED', getValue(parsed.gauges['jvm.non-heap.committed']), nil, source)
     metric('SPARK_MASTER_JVM_NONHEAP_MEMORY_USED', getValue(parsed.gauges['jvm.non-heap.used']), nil, source)
     metric('SPARK_MASTER_JVM_NONHEAP_MEMORY_USAGE', getValue(parsed.gauges['jvm.non-heap.usage']), nil, source)
+
+  elseif instance_type == 'drivers' then
+    local activeDrivers = parsed.activedrivers
+    if(activeDrivers ~= nil) then 
+	if(table.getn(activeDrivers) > 1) then
+		metric('SPARK_MASTER_ACTIVE_DRIVERS_EXEEDED', 1, nil, source)
+	else
+		metric('SPARK_MASTER_ACTIVE_DRIVERS_EXEEDED', 0, nil, source)
+	end
+    else
+	metric('SPARK_MASTER_ACTIVE_DRIVERS_EXEEDED', 0, nil, source)
+    end
     
   elseif instance_type == 'app' then
     parsed = get('gauges', parsed)
