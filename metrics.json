@@ -143,6 +143,15 @@
     "isDisabled": 0,
     "unit": "number"
   },
+  "SPARK_MASTER_ALIVE_WORKERS_COUNT": {
+    "defaultAggregate": "avg",
+    "defaultResolutionMS": 1000,
+    "description": "Alive workers on the master.",
+    "displayName": "Spark Master Alive Workers",
+    "displayNameShort": "Spark Alive Work",
+    "isDisabled": 0,
+    "unit": "number"
+  },
   "SPARK_MASTER_APPLICATIONS_RUNNING_COUNT": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
@@ -245,7 +254,7 @@
   "SPARK_MASTER_ALIVE_WORKERS_COUNT": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
-    "description": "The number of alive active workers on the master.",
+    "description": "The number of alive workers on the master.",
     "displayName": "Spark Master alive Workers",
     "displayNameShort": "Spark Mstr alv Work",
     "isDisabled": 0,
@@ -259,5 +268,15 @@
     "displayNameShort": "Spark Apps Not Run",
     "isDisabled": 0,
     "unit": "number"
-  }
+  },
+  "SPARK_MASTER_ACTIVE_DRIVERS": {
+    "defaultAggregate": "max",
+    "defaultResolutionMS": 1000,
+    "description": "The number of active drivers present",
+    "displayName": "Spark active drivers",
+    "displayNameShort": "Spark Activ Drivers",
+    "isDisabled": 0,
+    "unit": "number"
+  }  
 }
+

@@ -47,7 +47,7 @@ local function addPollers(item, pollers)
 
 	--Datasource to poll active drivers
 	local options1 = createOptions(item)
-	options1.path = '/metrics/master/json/'
+	options1.path = '/json/'
     	options1.meta = { instance_type = 'drivers', source = item.source }
     	local ds2 = WebRequestDataSource:new(options1)
     	pollers:add(DataSourcePoller:new(item.pollInterval, ds2))
@@ -126,16 +126,10 @@ function plugin:onParseValues(data, extra)
     metric('SPARK_MASTER_JVM_NONHEAP_MEMORY_USAGE', getValue(parsed.gauges['jvm.non-heap.usage']), nil, source)
 
   elseif instance_type == 'drivers' then
-    local activeDrivers = parsed.activedrivers
-    if(activeDrivers ~= nil) then 
-	if(table.getn(activeDrivers) > 1) then
-		metric('SPARK_MASTER_ACTIVE_DRIVERS_EXEEDED', 1, nil, source)
-	else
-		metric('SPARK_MASTER_ACTIVE_DRIVERS_EXEEDED', 0, nil, source)
-	end
-    else
-	metric('SPARK_MASTER_ACTIVE_DRIVERS_EXEEDED', 0, nil, source)
-    end
+    local activeDrivers = parsed.activedrivers    
+    if(activeDrivers ~= nil) then 	
+	metric('SPARK_MASTER_ACTIVE_DRIVERS', table.getn(activeDrivers), nil, source)	    
+    end    
     
   elseif instance_type == 'app' then
     parsed = get('gauges', parsed)
@@ -160,4 +154,5 @@ function plugin:onParseValues(data, extra)
 end
 
 plugin:run()
+
 
