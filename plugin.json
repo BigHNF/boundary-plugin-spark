@@ -1,6 +1,6 @@
 {
   "name" : "TrueSight Pulse Spark Plugin",
-  "version" : "0.9.1",
+  "version" : "0.9.2",
   "meterVersionRequired" : "4.2.0-611",
   "unsupportedPlatforms" : [ ],
   "tags" : "apache-spark",
@@ -11,9 +11,11 @@
   "postExtract" : "",
   "postExtract_lua" : "",
   "metrics" : [
+    "SPARK_MASTER_ALIVE_WORKERS_COUNT",
     "SPARK_MASTER_WORKERS_COUNT",
     "SPARK_MASTER_APPLICATIONS_RUNNING_COUNT",
     "SPARK_MASTER_APPLICATIONS_WAITING_COUNT",
+    "SPARK_MASTER_NO_APPLICATIONS_RUNNING",
     "SPARK_MASTER_JVM_MEMORY_USED",
     "SPARK_MASTER_JVM_MEMORY_COMMITTED",
     "SPARK_MASTER_JVM_HEAP_MEMORY_COMMITTED",
@@ -22,6 +24,7 @@
     "SPARK_MASTER_JVM_NONHEAP_MEMORY_COMMITTED",
     "SPARK_MASTER_JVM_NONHEAP_MEMORY_USED",
     "SPARK_MASTER_JVM_NONHEAP_MEMORY_USAGE",
+    "SPARK_MASTER_ACTIVE_DRIVERS",
     "SPARK_APP_JOBS_ACTIVE",
     "SPARK_APP_JOBS_ALL",
     "SPARK_APP_STAGES_FAILED",
@@ -80,7 +83,7 @@
       "type": { "enum" : [["Master", "master"], ["Application", "app"]]},
       "default": "master",
       "required": true
-    },
+    },    
     {
       "title": "Poll Interval (ms)",
       "name": "pollInterval",
@@ -106,3 +109,4 @@
     }
   ]
 }
+
